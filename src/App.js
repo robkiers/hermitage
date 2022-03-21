@@ -9,8 +9,43 @@ import img05 from "./assets/layer05.png";
 import img06 from "./assets/layer06.png";
 import img07 from "./assets/layer07.png";
 import React from "react";
+import { useEffect, useState } from 'react'
+import { fromEvent } from 'rxjs'
+import { map, throttleTime } from 'rxjs/operators'
+
+import useMousePosition from "./components/useMousePosition"
+
+function useMouseCoordinates() {
+  const [x, setX] = useState(null);
+  const [y, setY] = useState(null);
+
+  useEffect(() => {
+    console.log("effect fired");
+    const sub = fromEvent(document, "mousemove")
+      .pipe(
+        throttleTime(25),
+        map(event => [event.clientX, event.clientY])
+      )
+      .subscribe(([newX, newY]) => {
+        setX(newX);
+        setY(newY);
+      });
+
+    return () => {
+      sub.unsubscribe();
+    };
+  }, []);
+
+  return {
+    mouseX: x,
+    mouseY: y
+  };
+}
+
 
 export default function App() {
+  const { mouseX, mouseY } = useMouseCoordinates();
+    console.log('mouse', mouseX, mouseY);
 
   // const [mouseMoving] = React.useState(false);
 
@@ -38,7 +73,23 @@ export default function App() {
     const windowWith = window.innerWidth || 1580;
     const windowHeight = window.innerWidth || 789;
     const ratio = (windowWith / 1580) * 1.05;
+    
+    // center the image
     const adjustX = (windowWith * 1.05 - windowWith) / 2;
+    const tre = (((windowWith/2 + ratio ) - mouseX) / 20 );
+    console.log('adjustX', adjustX);
+    // mouseX / 2
+
+
+    // const halfWidth = width / 2;
+    // const halfHeight = height / 2;
+    // const euclidianX = mouseX - halfWidth;
+    // const euclidianY = halfHeight - mouseY;
+
+    // https://codepen.io/unicodeveloper/pen/LzNQYG
+    // https://stackoverflow.com/questions/34597160/html-canvas-mouse-position-after-scale-and-translate
+    
+    ctx.clearRect(0, 0, windowWith, windowHeight);
 
     imgLib.forEach((img) => {
       const image = new Image();
@@ -47,7 +98,7 @@ export default function App() {
       image.onload = () => {
         ctx.drawImage(
           image,
-          adjustX,
+          tre,
           0,
           1580,
           789,

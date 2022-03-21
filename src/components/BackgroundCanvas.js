@@ -32,7 +32,7 @@ const BackgroundCanvas = (props) => {
   // });
 
   // canvas.addEventListener('mousemove', onPointerMove)
-  console.log("e", draw);
+  // console.log("e", draw);
 
   return (
     <canvas
@@ -41,16 +41,8 @@ const BackgroundCanvas = (props) => {
       height={height}
       ref={canvasRef}
       {...rest}
-      onMouseMove={mover}
     />
   );
-};
-
-const mover = (e, draw) => {
-  console.log("e", e);
-  // e.preventDefault();
-  // console.log("move", e);
-  // draw();
 };
 
 export default BackgroundCanvas;
