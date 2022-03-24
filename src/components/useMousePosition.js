@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { fromEvent } from 'rxjs'
 import { map, throttleTime } from 'rxjs/operators'
 
-function useMousePosition(throttleTime = 10) {
+function useMousePosition(throttleTime = 1000) {
   const [x, setX] = useState(null)
   const [y, setY] = useState(null)
 

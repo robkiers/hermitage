@@ -7,22 +7,9 @@ const useCanvas = (draw, options = {}) => {
     const canvas = canvasRef.current;
     const context = canvas.getContext(options.context || "2d");
     
-    console.log("bounding", canvas.getBoundingClientRect());
-
     draw(context);
 
   }, [draw]);
-
-  
-  // canvas.addEventListener('mousemove', onPointerMove)
-//   function onPointerMove(e)
-// {
-//     if (isDragging)
-//     {
-//         cameraOffset.x = getEventLocation(e).x/cameraZoom - dragStart.x
-//         cameraOffset.y = getEventLocation(e).y/cameraZoom - dragStart.y
-//     }
-// }
 
 
 

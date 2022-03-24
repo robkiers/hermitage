@@ -8,23 +8,22 @@ import img04 from "./assets/layer04.png";
 import img05 from "./assets/layer05.png";
 import img06 from "./assets/layer06.png";
 import img07 from "./assets/layer07.png";
-import React from "react";
-import { useEffect, useState } from 'react'
-import { fromEvent } from 'rxjs'
-import { map, throttleTime } from 'rxjs/operators'
+import { fromEvent } from "rxjs";
+import { map, throttleTime } from "rxjs/operators";
 
-import useMousePosition from "./components/useMousePosition"
+import { useEffect, useRef, useState } from "react";
+import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers";
 
-function useMouseCoordinates() {
-  const [x, setX] = useState(null);
-  const [y, setY] = useState(null);
+function UseMouseCoordinates() {
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
 
   useEffect(() => {
     console.log("effect fired");
     const sub = fromEvent(document, "mousemove")
       .pipe(
-        throttleTime(25),
-        map(event => [event.clientX, event.clientY])
+        throttleTime(50),
+        map((event) => [event.clientX, event.clientY])
       )
       .subscribe(([newX, newY]) => {
         setX(newX);
@@ -38,90 +37,203 @@ function useMouseCoordinates() {
 
   return {
     mouseX: x,
-    mouseY: y
+    mouseY: y,
   };
 }
 
+function App() {
+  const canvasRef = useRef(null);
+  const cursorPosition = UseMouseCoordinates();
+  // const animationFrameRequestRef = useRef(null);
 
-export default function App() {
-  const { mouseX, mouseY } = useMouseCoordinates();
-    console.log('mouse', mouseX, mouseY);
+  const [enrichedLib, setEnrichedLib] = useState([]);
+  const [zoomState, setZoomState] = useState("zoomDefault");
 
-  // const [mouseMoving] = React.useState(false);
+  useEffect(() => {
+    loadImages().then((lib) => {
+      setEnrichedLib(lib);
+    });
+  }, []);
 
-  // React.useEffect(() => {
-  //   if (isCardMoving) window.addEventListener('mousemove', handleCardMove);
-  //   else window.removeEventListener('mousemove', handleCardMove);
-  // }, [isCardMoving]);
-
-  // const handleCardMove = (event) => console.log({ x: event.offsetX, y: event.offsetY });
-
+  // useEffect(() => {
+  //   console.log("useEffect", loaded);
+  //   if (!loaded) {
+  //     return
+  //   }
+  //   renderFrame();
+  //   animationFrameRequestRef.current = requestAnimationFrame(renderFrame);
+  //   return () => {
+  //     if (animationFrameRequestRef.current != null) {
+  //       cancelAnimationFrame(animationFrameRequestRef.current);
+  //     }
+  //   };
+  // }, [cursorPosition]);
 
   const imgLib = [
-    { id: "img07", src: img07, locationX: 0, locationY: 0 },
-    { id: "img06", src: img06, locationX: 0, locationY: 0 },
-    { id: "img05", src: img05, locationX: 0, locationY: 0 },
-    { id: "img04", src: img04, locationX: 0, locationY: 0 },
-    { id: "img03", src: img03, locationX: 0, locationY: 0 },
-    { id: "img02", src: img02, locationX: 0, locationY: 0 },
-    { id: "img01", src: img01, locationX: 0, locationY: 0 },
+    {
+      id: "img07",
+      src: img07,
+      adjustX: 0,
+      adjustY: 0,
+      zoomDefault: { x: 0, y: 0, zoom: 1 },
+      zoomCommons: { x: 750, y: 350, zoom: 1.75 },
+      zoomOak: { x: 125, y: 250, zoom: 1.5 },
+      zoomTemple: { x: 750, y: 20, zoom: 1.75 },
+      zoomArlien: { x: -10, y: 325, zoom: 2.25 },
+    },
+    {
+      id: "img06",
+      src: img06,
+      adjustX: 0.1,
+      adjustY: 0.1,
+      zoomDefault: { x: 0, y: 0, zoom: 1 },
+      zoomCommons: { x: 750, y: 350 },
+      zoomOak: { x: 125, y: 250, zoom: 1.5 },
+      zoomTemple: { x: 750, y: 20, zoom: 1.75 },
+      zoomArlien: { x: -10, y: 325, zoom: 2.25 },
+    },
+    {
+      id: "img05",
+      src: img05,
+      adjustX: 0.3,
+      adjustY: 0.3,
+      zoomDefault: { x: 0, y: 0, zoom: 1 },
+      zoomCommons: { x: 750, y: 350, zoom: 1.75 },
+      zoomOak: { x: 125, y: 250, zoom: 1.5 },
+      zoomTemple: { x: 750, y: 20, zoom: 1.75 },
+      zoomArlien: { x: -10, y: 325, zoom: 2.25 },
+    },
+    {
+      id: "img04",
+      src: img04,
+      adjustX: 0.4,
+      adjustY: 0.4,
+      zoomDefault: { x: 0, y: 0, zoom: 1 },
+      zoomCommons: { x: 750, y: 350, zoom: 1.75 },
+      zoomOak: { x: 125, y: 250, zoom: 1.5 },
+      zoomTemple: { x: 750, y: 20, zoom: 1.75 },
+      zoomArlien: { x: -10, y: 325, zoom: 2.25 },
+    },
+    {
+      id: "img03",
+      src: img03,
+      adjustX: 0.5,
+      adjustY: 0.5,
+      zoomDefault: { x: 0, y: 0, zoom: 1 },
+      zoomCommons: { x: 750, y: 350, zoom: 1.75 },
+      zoomOak: { x: 125, y: 250, zoom: 1.5 },
+      zoomTemple: { x: 750, y: 20, zoom: 1.75 },
+      zoomArlien: { x: -10, y: 325, zoom: 2.25 },
+    },
+    {
+      id: "img02",
+      src: img02,
+      adjustX: 1,
+      adjustY: 1,
+      zoomDefault: { x: 0, y: 0, zoom: 1 },
+      zoomCommons: { x: 750, y: 350, zoom: 1.75 },
+      zoomOak: { x: 125, y: 250, zoom: 1.5 },
+      zoomTemple: { x: 750, y: 20, zoom: 1.75 },
+      zoomArlien: { x: -10, y: 325, zoom: 2.25 },
+    },
+    {
+      id: "img01",
+      src: img01,
+      adjustX: 1,
+      adjustY: 1,
+      zoomDefault: { x: 0, y: 0, zoom: 1 },
+      zoomCommons: { x: 750, y: 350, zoom: 1.75 },
+      zoomOak: { x: 125, y: 250, zoom: 1.5 },
+      zoomTemple: { x: 750, y: 20, zoom: 1.75 },
+      zoomArlien: { x: -10, y: 325, zoom: 2.25 },
+    },
   ];
 
-  const draw = (ctx) => {
-    console.log("draw");
+  async function loadImages() {
+    const enrichedLib = await Promise.all(
+      imgLib.map(async (img) => {
+        const image = new Image();
+        await new Promise((r) => (image.onload = r), (image.src = img.src));
+        img.image = image;
+        return img;
+      })
+    );
+    return enrichedLib;
+  }
 
+  // function renderFrame() {
+  //   const context = canvasRef.current?.getContext("2d");
+  //   if (context != null) {
+  //     console.log("renderFrame", cursorPosition);
+
+  //     drawFunc(context, cursorPosition.mouseX, cursorPosition.mouseY);
+  //   }
+  // }
+
+  function clearBackground(context) {
+    const { width, height } = context.canvas;
+    context.clearRect(0, 0, width, height);
+  }
+
+  function zoom() {
+    console.log("test");
+    if (zoomState === "zoomOak") {
+      setZoomState("zoomDefault");
+    } else {
+      setZoomState("zoomOak");
+    }
+  }
+
+  function drawFunc(ctx) {
+    clearBackground(ctx);
     const windowWith = window.innerWidth || 1580;
-    const windowHeight = window.innerWidth || 789;
-    const ratio = (windowWith / 1580) * 1.05;
-    
-    // center the image
-    const adjustX = (windowWith * 1.05 - windowWith) / 2;
-    const tre = (((windowWith/2 + ratio ) - mouseX) / 20 );
-    console.log('adjustX', adjustX);
-    // mouseX / 2
+    const windowHeight = window.windowHeight || 789;
+    const ratio = (windowWith / 1580) * 1.08;
 
+    const centerX = (windowWith * 1.075 - windowWith) / 4;
+    const moveModX = (1580 * ratio - windowWith) / windowWith / 2;
+    const moveX = (centerX + cursorPosition.mouseX) * moveModX;
 
-    // const halfWidth = width / 2;
-    // const halfHeight = height / 2;
-    // const euclidianX = mouseX - halfWidth;
-    // const euclidianY = halfHeight - mouseY;
+    const centerY = (windowHeight * 1.075 - windowHeight) / 4;
+    const moveModY = (789 * ratio - windowHeight) / windowHeight / 2;
 
+    const moveY = (centerY + cursorPosition.mouseY) * moveModX;
+
+    const zoomLocation = zoomState;
     // https://codepen.io/unicodeveloper/pen/LzNQYG
     // https://stackoverflow.com/questions/34597160/html-canvas-mouse-position-after-scale-and-translate
-    
-    ctx.clearRect(0, 0, windowWith, windowHeight);
+    // https://medium.com/@rteammco/smooth-animations-for-interactive-html-canvas-simulations-with-react-b6fc1109ecd7
 
-    imgLib.forEach((img) => {
-      const image = new Image();
-      image.src = img.src;
+    enrichedLib.forEach((img) => {
+      const zoomX = img[zoomLocation].x || 1;
+      const zoomY = img[zoomLocation].y || 1;
+      const zoom = img[zoomLocation].zoom || 1;
 
-      image.onload = () => {
-        ctx.drawImage(
-          image,
-          tre,
-          0,
-          1580,
-          789,
-          0,
-          0,
-          1580 * ratio,
-          789 * ratio
-        );
-
-        // ctx.drawImage(img, 0,0, img.width, img.height, 0,0,img.width*ratio, img.height*ratio);
-      };
+      ctx.drawImage(
+        img.image,
+        zoomX + moveX * img.adjustX,
+        zoomY + moveY * img.adjustX,
+        1580,
+        789,
+        0,
+        0,
+        1580 * ratio * zoom,
+        789 * ratio * zoom
+      );
     });
-
-    console.log("ctx", ctx);
-  };
+  }
 
   return (
     <div className="App">
       <Navbar></Navbar>
-      <BackgroundCanvas draw={draw}></BackgroundCanvas>
+      <BackgroundCanvas draw={drawFunc} onClick={zoom}></BackgroundCanvas>
     </div>
   );
 }
+
+export default App;
+
+// _________________________
 
 // export default function App() {
 //   function getWindowWidth() {
@@ -132,12 +244,8 @@ export default function App() {
 //     };
 //   }
 
-//   // const screenWidth = getWindowWidth();
-
 //   function handleClick(e) {
-//     console.log("click", zoomedIn);
 
-//     // let zoom = 0;
 //     if (zoomedIn === 0) {
 //       setZoomstate(1);
 //       setTimeout(() => {

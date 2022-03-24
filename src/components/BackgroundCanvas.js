@@ -3,8 +3,10 @@ import useCanvas from "./useCanvas";
 
 const BackgroundCanvas = (props) => {
   const { draw, options, ...rest } = props;
-  //   const { context, ...moreConfig } = options;
   const canvasRef = useCanvas(draw, options);
+
+
+  //   const { context, ...moreConfig } = options;
   //   return <canvas ref={canvasRef} {...rest} />;
 
   // const { draw, ...rest } = props;
