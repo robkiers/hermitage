@@ -11,8 +11,7 @@ import img07 from "./assets/layer07.png";
 import { fromEvent } from "rxjs";
 import { map, throttleTime } from "rxjs/operators";
 
-import { useEffect, useRef, useState } from "react";
-import { toBePartiallyChecked } from "@testing-library/jest-dom/dist/matchers";
+import { useEffect, useState } from "react";
 
 function UseMouseCoordinates() {
   const [x, setX] = useState(0);
@@ -23,7 +22,7 @@ function UseMouseCoordinates() {
     const sub = fromEvent(document, "mousemove")
       .pipe(
         throttleTime(50),
-        map((event) => [event.clientX, event.clientY])
+        map((event: MouseEvent) => [event.clientX, event.clientY])
       )
       .subscribe(([newX, newY]) => {
         setX(newX);
@@ -42,18 +41,54 @@ function UseMouseCoordinates() {
 }
 
 function App() {
-  const canvasRef = useRef(null);
   const cursorPosition = UseMouseCoordinates();
   // const animationFrameRequestRef = useRef(null);
 
   const [enrichedLib, setEnrichedLib] = useState([]);
-  const [zoomState, setZoomState] = useState("zoomDefault");
+  const [zoomState, setZoomState] = useState({
+    current: "zoomDefault",
+    previous: "zoomDefault",
+    date: null,
+  });
+
+  const [zooming, setZoomingState] = useState(1);
+  // const zooming = 0;
+  // const [count, setCount] = useState(0)
+  // const requestRef = useRef();
+  // const previousTimeRef = useRef();
 
   useEffect(() => {
     loadImages().then((lib) => {
       setEnrichedLib(lib);
     });
   }, []);
+
+  useEffect(() => {
+    if (zooming <= 30) {
+      // console.log("zoom", zooming);
+      const timerId = setTimeout(() => {
+        setZoomingState(zooming + 1);
+      }, 1000 / 30);
+      return () => clearTimeout(timerId);
+    }
+  });
+
+  // const animate = time => {
+  //   if (previousTimeRef.current !== undefined) {
+  //     const deltaTime = time - previousTimeRef.current;
+  //     console.log('time', time);
+  //     // Pass on a function to the setter of the state
+  //     // to make sure we always have the latest state
+  //     setCount(prevCount => (prevCount + deltaTime * 0.01) % 100);
+  //   }
+  //   previousTimeRef.current = time;
+  //   requestRef.current = requestAnimationFrame(animate);
+  // }
+
+  // useEffect(() => {
+  //   requestRef.current = requestAnimationFrame(animate);
+  //   return () => cancelAnimationFrame(requestRef.current);
+  // }, []);
 
   // useEffect(() => {
   //   console.log("useEffect", loaded);
@@ -72,7 +107,9 @@ function App() {
   const imgLib = [
     {
       id: "img07",
+      desc: "moon",
       src: img07,
+      image: null,
       adjustX: 0,
       adjustY: 0,
       zoomDefault: { x: 0, y: 0, zoom: 1 },
@@ -83,20 +120,11 @@ function App() {
     },
     {
       id: "img06",
+      desc: "hyjal",
       src: img06,
+      image: null,
       adjustX: 0.1,
       adjustY: 0.1,
-      zoomDefault: { x: 0, y: 0, zoom: 1 },
-      zoomCommons: { x: 750, y: 350 },
-      zoomOak: { x: 125, y: 250, zoom: 1.5 },
-      zoomTemple: { x: 750, y: 20, zoom: 1.75 },
-      zoomArlien: { x: -10, y: 325, zoom: 2.25 },
-    },
-    {
-      id: "img05",
-      src: img05,
-      adjustX: 0.3,
-      adjustY: 0.3,
       zoomDefault: { x: 0, y: 0, zoom: 1 },
       zoomCommons: { x: 750, y: 350, zoom: 1.75 },
       zoomOak: { x: 125, y: 250, zoom: 1.5 },
@@ -104,8 +132,23 @@ function App() {
       zoomArlien: { x: -10, y: 325, zoom: 2.25 },
     },
     {
+      id: "img05",
+      desc: "hills",
+      src: img05,
+      image: null,
+      adjustX: 0.3,
+      adjustY: 0.3,
+      zoomDefault: { x: 0, y: 0, zoom: 1 },
+      zoomCommons: { x: 750, y: 350, zoom: 1.75 },
+      zoomOak: { x: 125, y: 250, zoom: 1.5 },
+      zoomTemple: { x: 750, y: 20, zoom: 1.75 },
+      zoomArlien: { x: 50, y: 325, zoom: 2.5 },
+    },
+    {
       id: "img04",
+      desc: "tree",
       src: img04,
+      image: null,
       adjustX: 0.4,
       adjustY: 0.4,
       zoomDefault: { x: 0, y: 0, zoom: 1 },
@@ -116,34 +159,40 @@ function App() {
     },
     {
       id: "img03",
+      desc: "temple",
       src: img03,
+      image: null,
       adjustX: 0.5,
       adjustY: 0.5,
       zoomDefault: { x: 0, y: 0, zoom: 1 },
       zoomCommons: { x: 750, y: 350, zoom: 1.75 },
-      zoomOak: { x: 125, y: 250, zoom: 1.5 },
+      zoomOak: { x: 75, y: 250, zoom: 1.5 },
       zoomTemple: { x: 750, y: 20, zoom: 1.75 },
       zoomArlien: { x: -10, y: 325, zoom: 2.25 },
     },
     {
       id: "img02",
+      desc: "commons",
       src: img02,
+      image: null,
       adjustX: 1,
       adjustY: 1,
       zoomDefault: { x: 0, y: 0, zoom: 1 },
       zoomCommons: { x: 750, y: 350, zoom: 1.75 },
-      zoomOak: { x: 125, y: 250, zoom: 1.5 },
+      zoomOak: { x: 25, y: 250, zoom: 1.5 },
       zoomTemple: { x: 750, y: 20, zoom: 1.75 },
       zoomArlien: { x: -10, y: 325, zoom: 2.25 },
     },
     {
       id: "img01",
+      desc: "tower",
       src: img01,
+      image: null,
       adjustX: 1,
       adjustY: 1,
       zoomDefault: { x: 0, y: 0, zoom: 1 },
       zoomCommons: { x: 750, y: 350, zoom: 1.75 },
-      zoomOak: { x: 125, y: 250, zoom: 1.5 },
+      zoomOak: { x: 225, y: 200, zoom: 1.5 },
       zoomTemple: { x: 750, y: 20, zoom: 1.75 },
       zoomArlien: { x: -10, y: 325, zoom: 2.25 },
     },
@@ -161,33 +210,33 @@ function App() {
     return enrichedLib;
   }
 
-  // function renderFrame() {
-  //   const context = canvasRef.current?.getContext("2d");
-  //   if (context != null) {
-  //     console.log("renderFrame", cursorPosition);
+  function zoom(prop) {
+    // console.log("test", prop);
+    // const current = zoomState.current;
+    const timed = Date.now();
+    setZoomState({ current: prop, previous: zoomState.current, date: timed });
+    // console.log("test 2", timed);
 
-  //     drawFunc(context, cursorPosition.mouseX, cursorPosition.mouseY);
-  //   }
-  // }
+    setZoomingState(1);
+  }
 
   function clearBackground(context) {
     const { width, height } = context.canvas;
     context.clearRect(0, 0, width, height);
   }
 
-  function zoom() {
-    console.log("test");
-    if (zoomState === "zoomOak") {
-      setZoomState("zoomDefault");
-    } else {
-      setZoomState("zoomOak");
-    }
+  function move(img, atribute) {
+    // console.log('zoomState', zoomState);
+    const distance =
+      (img[zoomState.current][atribute] - img[zoomState.previous][atribute]) /
+      30;
+    return img[zoomState.previous][atribute] + distance * zooming;
   }
 
   function drawFunc(ctx) {
     clearBackground(ctx);
     const windowWith = window.innerWidth || 1580;
-    const windowHeight = window.windowHeight || 789;
+    const windowHeight = window.innerHeight || 789;
     const ratio = (windowWith / 1580) * 1.08;
 
     const centerX = (windowWith * 1.075 - windowWith) / 4;
@@ -199,34 +248,42 @@ function App() {
 
     const moveY = (centerY + cursorPosition.mouseY) * moveModX;
 
-    const zoomLocation = zoomState;
+    // const zoomLocation = zoomState;
     // https://codepen.io/unicodeveloper/pen/LzNQYG
     // https://stackoverflow.com/questions/34597160/html-canvas-mouse-position-after-scale-and-translate
     // https://medium.com/@rteammco/smooth-animations-for-interactive-html-canvas-simulations-with-react-b6fc1109ecd7
 
     enrichedLib.forEach((img) => {
-      const zoomX = img[zoomLocation].x || 1;
-      const zoomY = img[zoomLocation].y || 1;
-      const zoom = img[zoomLocation].zoom || 1;
+      // const zoomX = img[zoomLocation].x || 1;
+      // const zoomY = img[zoomLocation].y || 1;
+      // const zoom = img[zoomLocation].zoom || 1;
 
       ctx.drawImage(
         img.image,
-        zoomX + moveX * img.adjustX,
-        zoomY + moveY * img.adjustX,
+        move(img, "x") + moveX * img.adjustX,
+        move(img, "y") + moveY * img.adjustX,
         1580,
         789,
         0,
         0,
-        1580 * ratio * zoom,
-        789 * ratio * zoom
+        1580 * ratio * move(img, "zoom"),
+        789 * ratio * move(img, "zoom")
       );
     });
   }
 
   return (
     <div className="App">
-      <Navbar></Navbar>
-      <BackgroundCanvas draw={drawFunc} onClick={zoom}></BackgroundCanvas>
+      <nav>
+        <button onClick={() => zoom("zoomTemple")}>Temple</button>
+        <button onClick={() => zoom("zoomCommons")}>Commons</button>
+        <button onClick={() => zoom("zoomOak")}>Central Oak</button>
+        <button onClick={() => zoom("zoomArlien")}>Arlièn</button>
+      </nav>
+      <BackgroundCanvas
+        draw={drawFunc}
+        onClick={() => zoom("zoomDefault")}
+      ></BackgroundCanvas>
     </div>
   );
 }

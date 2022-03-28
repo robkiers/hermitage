@@ -1,10 +1,13 @@
 import React from "react";
 
-function Navbar() {
+
+
+const Navbar = (props) => {
+  console.log('proprs', props);
   return (
     <div>
       <div>
-        <button>Commons</button>
+        <button onClick={props.onClick}>Commons</button>
       </div>
       <div>
         <button>Temple</button>

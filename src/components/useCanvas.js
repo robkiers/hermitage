@@ -6,12 +6,8 @@ const useCanvas = (draw, options = {}) => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext(options.context || "2d");
-    
     draw(context);
-
   }, [draw]);
-
-
 
   return canvasRef;
 };
