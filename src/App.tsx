@@ -86,18 +86,18 @@ function App() {
     const currentTime = Date.now();
     const animationEndTime = zoomState.date + runTime;
 
-    if (currentTime < animationEndTime) {
+    if (zooming < 1) {
       const timerId = setTimeout(() => {
         updateZoom(animationEndTime, currentTime);
-      }, runTime / 30);
+      }, runTime/30);
       return () => clearTimeout(timerId);
     }
   });
 
   function updateZoom(animationEndTime: number, currentTime: number) {
     const delta = animationEndTime - currentTime;
-    const percentComplete = delta <= 0 ? 1 : (runTime - delta) / runTime 
-    setZoomingState(percentComplete);
+    const percentComplete = (runTime - delta) / runTime 
+    setZoomingState(percentComplete > 1 ? 1 : percentComplete);
   }
 
   const imgLib = [
@@ -201,7 +201,7 @@ function App() {
     return enrichedLib;
   }
 
-  function zoom(prop: any) {
+  function zoom(prop: string) {
     if (prop !== zoomState.current) {
       const timed = Date.now();
       setZoomingState(0);
@@ -238,14 +238,13 @@ function App() {
     const moveX = (centerX + cursorPosition.mouseX) * moveModX;
 
     const centerY = (windowHeight * 1.075 - windowHeight) / 4;
-    const moveModY = (789 * ratio - windowHeight) / windowHeight / 2;
+    // const moveModY = (789 * ratio - windowHeight) / windowHeight / 2;
 
     const moveY = (centerY + cursorPosition.mouseY) * moveModX;
 
     // https://codepen.io/unicodeveloper/pen/LzNQYG
     // https://stackoverflow.com/questions/34597160/html-canvas-mouse-position-after-scale-and-translate
     // https://medium.com/@rteammco/smooth-animations-for-interactive-html-canvas-simulations-with-react-b6fc1109ecd7
-    console.log('drawFunc');
     enrichedLib?.forEach((img) => {
       ctx.drawImage(
         img.image,
@@ -263,7 +262,7 @@ function App() {
 
   return (
     <div className="App">
-      <nav>
+      <nav className="margin-top">
         <button onClick={() => zoom("zoomTemple")}>Temple</button>
         <button onClick={() => zoom("zoomCommons")}>Commons</button>
         <button onClick={() => zoom("zoomOak")}>Central Oak</button>

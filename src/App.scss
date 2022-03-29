@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+
 .App {
   display: flex;
   justify-content: center;
@@ -15,4 +17,49 @@
 .canvasBackground {
   position: absolute;
   z-index: -1;
+}
+
+.margin-right {
+  margin-right: 20px;
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+
+button {
+  position: relative;
+  display: block;
+  padding: 18px 60px;
+  overflow: hidden;
+  border-width: 1px;
+  outline: none;
+  border: 1px solid rgb(168, 215, 247);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgb(255, 255, 255);
+  background: none;
+
+  transition: all 0.3s;
+
+  font-family: 'Mate SC', serif;
+  color: #ecf0f1;
+  font-size: 1.25em;
+  font-weight: 100;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgb(255, 255, 255);
+    background-color: rgba(168, 215, 247, 0.1);
+    border: 1px solid rgb(235, 247, 255);
+    text-shadow: 0 2px rgb(255, 255, 255, 0.2);
+  }
+  &:active {
+    color: rgb(209, 240, 255);
+  }
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
