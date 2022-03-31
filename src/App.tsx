@@ -8,6 +8,7 @@ import img04 from "./assets/layer04.png";
 import img05 from "./assets/layer05.png";
 import img06 from "./assets/layer06.png";
 import img07 from "./assets/layer07.png";
+import logo from "./assets/logo.png";
 import { fromEvent } from "rxjs";
 import { map, throttleTime } from "rxjs/operators";
 import { useEffect, useState } from "react";
@@ -59,22 +60,19 @@ function UseMouseCoordinates() {
   };
 }
 
-
-
 function App() {
   const cursorPosition = UseMouseCoordinates();
 
   const [enrichedLib, setEnrichedLib] = useState<imagePart[]>();
-  const [zoomState, setZoomState] = useState({
+  const [zoomLocation, setZoomLocation] = useState({
     current: "zoomDefault",
     previous: "zoomDefault",
     date: 0,
   });
 
-  const [zooming, setZoomingState] = useState(0);
+  const [zoomPercentage, setZoomPercentage] = useState(0);
 
   const runTime = 750;
-
 
   useEffect(() => {
     loadImages().then((lib) => {
@@ -84,20 +82,20 @@ function App() {
 
   useEffect(() => {
     const currentTime = Date.now();
-    const animationEndTime = zoomState.date + runTime;
+    const animationEndTime = zoomLocation.date + runTime;
 
-    if (zooming < 1) {
+    if (zoomPercentage < 1) {
       const timerId = setTimeout(() => {
         updateZoom(animationEndTime, currentTime);
-      }, runTime/30);
+      }, runTime / 30);
       return () => clearTimeout(timerId);
     }
   });
 
   function updateZoom(animationEndTime: number, currentTime: number) {
     const delta = animationEndTime - currentTime;
-    const percentComplete = (runTime - delta) / runTime 
-    setZoomingState(percentComplete > 1 ? 1 : percentComplete);
+    const percentComplete = (runTime - delta) / runTime;
+    setZoomPercentage(percentComplete > 1 ? 1 : percentComplete);
   }
 
   const imgLib = [
@@ -202,10 +200,10 @@ function App() {
   }
 
   function zoom(prop: string) {
-    if (prop !== zoomState.current) {
+    if (prop !== zoomLocation.current) {
       const timed = Date.now();
-      setZoomingState(0);
-      setZoomState({ current: prop, previous: zoomState.current, date: timed });
+      setZoomPercentage(0);
+      setZoomLocation({ current: prop, previous: zoomLocation.current, date: timed });
     }
   }
 
@@ -216,13 +214,13 @@ function App() {
 
   function move(img: imagePart, attribute: string) {
     const newPosition = (
-      img[zoomState.current as keyof imagePart] as imageZoom
+      img[zoomLocation.current as keyof imagePart] as imageZoom
     )[attribute as keyof imageZoom];
     const oldPosition = (
-      img[zoomState.previous as keyof imagePart] as imageZoom
+      img[zoomLocation.previous as keyof imagePart] as imageZoom
     )[attribute as keyof imageZoom];
 
-    const distance = (newPosition - oldPosition) * zooming;
+    const distance = (newPosition - oldPosition) * zoomPercentage;
 
     return oldPosition + distance;
   }
@@ -260,14 +258,24 @@ function App() {
     });
   }
 
+  
   return (
     <div className="App">
-      <nav className="margin-top">
-        <button onClick={() => zoom("zoomTemple")}>Temple</button>
-        <button onClick={() => zoom("zoomCommons")}>Commons</button>
-        <button onClick={() => zoom("zoomOak")}>Central Oak</button>
-        <button onClick={() => zoom("zoomArlien")}>Arlièn</button>
-      </nav>
+      <div className="header margin-top">
+        <div className="logoContainer" onClick={() => zoom("zoomDefault")}>
+          <img className="headerLogo" src={logo} alt="hermitage logo" />
+          <span className="headerTitle">
+            Moonrise <br /> Hermitage
+          </span>
+        </div>
+        <nav>
+          <button onClick={() => zoom("zoomTemple")}>Temple</button>
+          <button onClick={() => zoom("zoomCommons")}>Commons</button>
+          <button onClick={() => zoom("zoomOak")}>Central Oak</button>
+          <button onClick={() => zoom("zoomArlien")}>Arlièn</button>
+        </nav>
+      </div>
+
       <BackgroundCanvas
         draw={drawFunc}
         onClick={() => zoom("zoomDefault")}
