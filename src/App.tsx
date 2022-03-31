@@ -1,6 +1,5 @@
 import "./App.scss";
-import Navbar from "./layouts/Navbar.js";
-import BackgroundCanvas from "./components/BackgroundCanvas";
+
 import img01 from "./assets/layer01.png";
 import img02 from "./assets/layer02.png";
 import img03 from "./assets/layer03.png";
@@ -13,6 +12,9 @@ import { fromEvent } from "rxjs";
 import { map, throttleTime } from "rxjs/operators";
 import { useEffect, useState } from "react";
 
+import Header from "./layouts/Header";
+import BeautifyUI from "./layouts/BeautifyUI";
+import BackgroundCanvas from "./components/BackgroundCanvas";
 export interface imageZoom {
   x: number;
   y: number;
@@ -203,7 +205,11 @@ function App() {
     if (prop !== zoomLocation.current) {
       const timed = Date.now();
       setZoomPercentage(0);
-      setZoomLocation({ current: prop, previous: zoomLocation.current, date: timed });
+      setZoomLocation({
+        current: prop,
+        previous: zoomLocation.current,
+        date: timed,
+      });
     }
   }
 
@@ -258,28 +264,15 @@ function App() {
     });
   }
 
-  
   return (
     <div className="App">
-      <div className="header margin-top">
-        <div className="logoContainer" onClick={() => zoom("zoomDefault")}>
-          <img className="headerLogo" src={logo} alt="hermitage logo" />
-          <span className="headerTitle">
-            Moonrise <br /> Hermitage
-          </span>
-        </div>
-        <nav>
-          <button onClick={() => zoom("zoomTemple")}>Temple</button>
-          <button onClick={() => zoom("zoomCommons")}>Commons</button>
-          <button onClick={() => zoom("zoomOak")}>Central Oak</button>
-          <button onClick={() => zoom("zoomArlien")}>Arlièn</button>
-        </nav>
-      </div>
+      <Header zoom={zoom}></Header>
 
       <BackgroundCanvas
         draw={drawFunc}
         onClick={() => zoom("zoomDefault")}
       ></BackgroundCanvas>
+      <BeautifyUI></BeautifyUI>
     </div>
   );
 }

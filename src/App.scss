@@ -57,7 +57,12 @@ button {
   &:active {
     color: rgb(209, 240, 255);
   }
+
+  &.circle {
+    
+  }
 }
+
 
 .header {
   display: grid;
@@ -95,4 +100,10 @@ nav {
 .displayInfo {
   display: grid;
   grid-template-columns: 10% 40% 40% 10%
+}
+
+.beautifyUI {
+  position: absolute;
+  left: 5rem;
+  bottom: 5rem;
 }
