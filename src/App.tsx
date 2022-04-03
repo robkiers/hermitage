@@ -7,7 +7,6 @@ import img04 from "./assets/layer04.png";
 import img05 from "./assets/layer05.png";
 import img06 from "./assets/layer06.png";
 import img07 from "./assets/layer07.png";
-import logo from "./assets/logo.png";
 import { fromEvent } from "rxjs";
 import { map, throttleTime } from "rxjs/operators";
 import { useEffect, useState } from "react";
@@ -73,6 +72,7 @@ function App() {
   });
 
   const [zoomPercentage, setZoomPercentage] = useState(0);
+  const [showUI, setShowUI] = useState(true);
 
   const runTime = 750;
 
@@ -264,15 +264,18 @@ function App() {
     });
   }
 
+  function toggleUI() {
+    setShowUI(!showUI);
+  }
+
   return (
     <div className="App">
-      <Header zoom={zoom}></Header>
-
+      {showUI ? <Header zoom={zoom}></Header> : null}
       <BackgroundCanvas
         draw={drawFunc}
         onClick={() => zoom("zoomDefault")}
       ></BackgroundCanvas>
-      <BeautifyUI></BeautifyUI>
+      <BeautifyUI toggleUI={toggleUI} showUI={showUI}></BeautifyUI>
     </div>
   );
 }
