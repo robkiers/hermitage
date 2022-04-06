@@ -22,6 +22,10 @@
 .canvasBackground {
   position: absolute;
   top: 0px;
+  z-index: -2;
+}
+
+.commonsDisplay .canvasBackground {
   z-index: -1;
 }
 
@@ -119,11 +123,10 @@ nav {
 }
 
 .cornerInteraction {
-  // inlineblock;
   width: 15rem;
   height: 10rem;
   display: flex;
-
+  
   border-style: solid;
   border-width: 1px 1px 0px 0px;
   border-color: rgb(235, 247, 255);
@@ -131,6 +134,7 @@ nav {
 
   box-shadow: 0 1px 4px rgb(255, 255, 255);
   transition: all 1s;
+  // transition-delay: 0.5s;
 
   font-family: "Mate SC", serif;
   color: #ecf0f1;
@@ -154,5 +158,29 @@ nav {
     box-shadow: 0 3px 10px rgb(255, 255, 255);
     background-color: rgba(168, 215, 247, 0.1);
     text-shadow: 0 2px rgb(255, 255, 255, 0.2);
+  }
+}
+
+.oakDisplay {
+  margin-top: 5rem;
+  display: grid;
+  pointer-events: none;
+  grid-template-columns: 10% 40% 40% 10%;
+  .oakText {
+    h1 {
+      font-family: "Mate SC", serif;
+      color: #ecf0f1;
+      font-weight: 100;
+    }
+    color: #ecf0f1;
+    background-image: url(../src/assets/WorldMap-Parchmen-brown.png);
+    background-repeat: no-repeat;
+    grid-column-start: 2;
+    padding: 5rem;
+    background-size: 100% 100%;
+    p::first-letter {
+      font-family: "Mate SC", serif;
+      font-size: 1.1rem;
+    }
   }
 }

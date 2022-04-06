@@ -1,40 +1,33 @@
 // import nightsong from "../assets/nightsong.mp3";
-
 import { useEffect, useState } from "react";
-
-
 
 const BeautifyUI = (props: any) => {
   const { toggleUI, showUI } = props;
   
-  const [audioPlay, setAudioPlay] = useState(false);
+  // const [audioPlay, setAudioPlay] = useState(false);
+  // const nightsong = new Audio(require("../assets/nightsong.mp3"));
 
-  const nightsong = new Audio(require("../assets/nightsong.mp3"));
-
-  useEffect(() => {
-    console.log(audioPlay, nightsong);
+  // useEffect(() => {
+  //   console.log(audioPlay, nightsong);
     
-    nightsong.paused ? nightsong.play() : nightsong.pause();
-    console.log(audioPlay, nightsong.paused);
+  //   nightsong.paused ? nightsong.play() : nightsong.pause();
+  //   console.log(audioPlay, nightsong.paused);
 
-  }, [audioPlay]);
+  // }, [audioPlay]);
 
-  function toggleMusic() {
-    setAudioPlay(!audioPlay);
-  }
+  // function toggleMusic() {
+  //   setAudioPlay(!audioPlay);
+  // }
 
   return (
     <div className="beautifyUI">
       {showUI ? (
         <div className="flex">
-          <button className="circular" onClick={() => toggleMusic()}>
+          {/* <button className="circular" onClick={() => toggleMusic()}>
             {audioPlay ? "||" : "►"}
-          </button>
+          </button> */}
           <button className="circular" onClick={() => toggleUI()}>
             ▬
-          </button>
-          <button className="circular" onClick={() => nightsong.pause()}>
-            P
           </button>
         </div>
       ) : (
@@ -49,8 +42,7 @@ const BeautifyUI = (props: any) => {
 // src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/7708422&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/wowcataclysm" title="wowcataclysm"
 // target="_blank" style="color: #cccccc; text-decoration: none;">wowcataclysm</a> · <a href="https://soundcloud.com/wowcataclysm/nightsong"
 // title="Nightsong" target="_blank" style="color: #cccccc; text-decoration: none;">Nightsong</a></div>
-export default BeautifyUI;
-
 // https://soundcloud.com/wowcataclysm/nightsong?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing
 
-/* <source src="horse.ogg" type="audio/ogg"> */
+export default BeautifyUI;
+

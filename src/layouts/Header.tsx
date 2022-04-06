@@ -15,7 +15,7 @@ const Header = (props: any) => {
         <button onClick={() => zoom("zoomTemple")}>Temple</button>
         <button onClick={() => zoom("zoomCommons")}>Commons</button>
         <button onClick={() => zoom("zoomOak")}>Central Oak</button>
-        <button onClick={() => zoom("zoomArlien")}>Arlièn</button>
+        {/* <button onClick={() => zoom("zoomArlien")}>Arlièn</button> */}
       </nav>
     </div>
   );
