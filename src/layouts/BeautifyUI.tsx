@@ -1,15 +1,16 @@
 // import nightsong from "../assets/nightsong.mp3";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+import Player from "../components/AudioPlayer";
 
 const BeautifyUI = (props: any) => {
   const { toggleUI, showUI } = props;
-  
+
   // const [audioPlay, setAudioPlay] = useState(false);
   // const nightsong = new Audio(require("../assets/nightsong.mp3"));
 
   // useEffect(() => {
   //   console.log(audioPlay, nightsong);
-    
+
   //   nightsong.paused ? nightsong.play() : nightsong.pause();
   //   console.log(audioPlay, nightsong.paused);
 
@@ -21,20 +22,18 @@ const BeautifyUI = (props: any) => {
 
   return (
     <div className="beautifyUI">
-      {showUI ? (
-        <div className="flex">
-          {/* <button className="circular" onClick={() => toggleMusic()}>
-            {audioPlay ? "||" : "►"}
-          </button> */}
-          <button className="circular" onClick={() => toggleUI()}>
-            ▬
-          </button>
-        </div>
-      ) : (
-        <div className="cornerInteraction hidden" onClick={() => toggleUI()}>
-          <span>Click in this corner again to display UI</span>
-        </div>
-      )}
+      <div className={showUI ? "flex" : "flex hidden"}>
+        <button className="circular" onClick={() => toggleUI()}>
+          ▬
+        </button>
+        <Player url={"../assets/nightsong.mp3"}></Player>
+      </div>
+      <div
+        className={showUI ? "cornerInteraction hidden" : "cornerInteraction"}
+        onClick={() => toggleUI()}
+      >
+        <span>Click in this corner again to display UI</span>
+      </div>
     </div>
   );
 };
@@ -45,4 +44,3 @@ const BeautifyUI = (props: any) => {
 // https://soundcloud.com/wowcataclysm/nightsong?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing
 
 export default BeautifyUI;
-

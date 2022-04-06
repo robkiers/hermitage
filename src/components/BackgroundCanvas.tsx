@@ -5,7 +5,11 @@ const BackgroundCanvas = (props: any) => {
   const { draw, options, ...rest } = props;
   const canvasRef = useCanvas(draw, options);
 
-
+  function clearBackground(context: CanvasRenderingContext2D) {
+    const { width, height } = context.canvas;
+    context.clearRect(0, 0, width, height);
+  }
+  
   //   const { context, ...moreConfig } = options;
   //   return <canvas ref={canvasRef} {...rest} />;
 

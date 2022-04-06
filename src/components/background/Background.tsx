@@ -9,7 +9,7 @@ import BackgroundCanvas from "../BackgroundCanvas";
 const Background = (props: any) => {
   const { zoom, zoomLocation } = props;
   // const enrichedLib = LoadBackgroundLibrary();
-  const [enrichedLib, setEnrichedLib] = useState<imagePart[]>();
+  const [enrichedLib, setEnrichedLib] = useState<imagePart[]>([]);
 
   const cursorPosition = useMousePosition();
   const [zoomPercentage, setZoomPercentage] = useState(0);
@@ -18,7 +18,6 @@ const Background = (props: any) => {
   const runTime = 750;
 
   useEffect(() => {
-    // console.log('zoomPercentage')
     const currentTime = Date.now();
     const animationEndTime = zoomLocation.date + runTime;
     if (location !== zoomLocation.current) {
@@ -65,6 +64,10 @@ const Background = (props: any) => {
   }
 
   function drawFunc(ctx: CanvasRenderingContext2D) {
+    if (!enrichedLib) {
+      return;
+    }
+
     clearBackground(ctx);
     const imgWidth = 1580;
     // 6007/1580

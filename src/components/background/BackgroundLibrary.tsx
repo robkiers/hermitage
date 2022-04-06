@@ -25,7 +25,7 @@ export interface imagePart {
   zoomArlien: imageZoom;
 }
 
-function LoadBackgroundLibrary() {
+async function LoadBackgroundLibrary() {
   // const [enrichedLib, setEnrichedLib] = useState<imagePart[]>();
 
   // useEffect(() => {
@@ -97,21 +97,32 @@ function LoadBackgroundLibrary() {
     },
   ];
 
-   return async function loadImages() {
-    const enrichedLib: imagePart[] = await Promise.all(
-      imgLib.map(async (img) => {
-        const temp = img as imagePart;
-        const image = new Image();
-        image.src = img.src;
-        await new Promise((r) => (image.onload = r));
-        temp.image = image;
-        return temp as imagePart;
-      })
-    );
-    return enrichedLib;
-  };
+  // return async function loadImages() {
+  //   const enrichedLib: imagePart[] = await Promise.all(
+  //     imgLib.map(async (img) => {
+  //       const temp = img as imagePart;
+  //       const image = new Image();
+  //       image.src = img.src;
+  //       await new Promise((r) => (image.onload = r));
+  //       temp.image = image;
+  //       return temp as imagePart;
+  //     })
+  //   );
+  //   return enrichedLib;
+  // };
+
+  return await Promise.all(
+    imgLib.map(async (img) => {
+      const temp = img as imagePart;
+      const image = new Image();
+      image.src = img.src;
+      await new Promise((r) => (image.onload = r));
+      temp.image = image;
+      return temp as imagePart;
+    })
+  );
 
   // return enrichedLib;
-};
+}
 
 export default LoadBackgroundLibrary;
