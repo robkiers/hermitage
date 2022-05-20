@@ -6,6 +6,7 @@ import BeautifyUI from "./layouts/BeautifyUI";
 import Oak from "./pages/oak";
 import Commons from "./pages/commons";
 import Background from "./components/background/Background";
+import { fromEvent, map, tap } from "rxjs";
 
 function App() {
   const [zoomLocation, setZoomLocation] = useState({
@@ -13,8 +14,19 @@ function App() {
     previous: "zoomDefault",
     date: 0,
   });
-
   const [showUI, setShowUI] = useState(true);
+
+  useEffect(() => {
+    const sub = fromEvent<MouseEvent>(document, "mousedown")
+      .pipe(map((event: MouseEvent) => event))
+      .subscribe((event) => {
+        console.log(event);
+      });
+
+    return () => {
+      sub.unsubscribe();
+    };
+  }, []);
 
   function zoom(prop: string) {
     if (prop !== zoomLocation.current) {
@@ -35,17 +47,15 @@ function App() {
     <div className="App">
       {showUI ? <Header zoom={zoom}></Header> : null}
       {showUI && zoomLocation.current === "zoomOak" ? <Oak></Oak> : null}
-      {showUI && zoomLocation.current === "zoomCommons" ? <Commons></Commons> : null}
+      {showUI && zoomLocation.current === "zoomCommons" ? (
+        <Commons></Commons>
+      ) : null}
       <BeautifyUI toggleUI={toggleUI} showUI={showUI}></BeautifyUI>
-      <Background zoom={zoom} zoomLocation={zoomLocation}></Background>
+      <div>
+        <Background zoom={zoom} zoomLocation={zoomLocation}></Background>
+      </div>
     </div>
   );
 }
 
 export default App;
-
-// {showUI &&  zoomLocation.current === "zoomCommons" ? <Commons></Commons> : null}
-// <BackgroundCanvas
-//   draw={drawFunc}
-//   onClick={() => zoom("zoomDefault")}
-// ></BackgroundCanvas>

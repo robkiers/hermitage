@@ -1,5 +1,9 @@
+@import "the-new-css-reset/css/reset.css";
 @import url("https://fonts.googleapis.com/css2?family=Mate+SC&display=swap");
-
+// body {
+//   width: 100vw;
+//   height: 100vh;
+// }
 .App {
   width: 100%;
   height: 100%;
@@ -21,6 +25,9 @@
   position: absolute;
   top: 0px;
   z-index: -2;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .commonsDisplay .canvasBackground {
@@ -169,7 +176,6 @@ nav {
 .oakDisplay {
   margin-top: 5rem;
   display: grid;
-  pointer-events: none;
   grid-template-columns: 10% 40% 40% 10%;
   .oakText {
     h1 {
@@ -179,6 +185,7 @@ nav {
     }
     color: #ecf0f1;
     background-image: url(../src/assets/WorldMap-Parchmen-brown.png);
+    filter: saturate(70%) brightness(125%);
     background-repeat: no-repeat;
     grid-column-start: 2;
     padding: 5rem;
@@ -188,4 +195,10 @@ nav {
       font-size: 1.1rem;
     }
   }
+}
+
+.oakLogo {
+  height: 200px;
+  margin: 10px;
+  align-self: flex-end;
 }

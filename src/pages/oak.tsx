@@ -1,3 +1,5 @@
+import logo from "../assets/logo.png";
+
 function Oak() {
   return (
     <div className="oakDisplay">
@@ -43,13 +45,18 @@ function Oak() {
           militia, the Grove Blades to safeguard their kin and the lands they
           hold sacred.
         </p>
-        <p>
-          No matter what wounds or sorrows they seek relief from, or how they
-          found their way here, to all of us, the Moonrise Hermitage is a
-          symbol, an icon and a message of hope that alights the darkest night
-          as does the Moon herself: By the Goddess’ grace, there is sanctuary
-          still in a war-torn world.
-        </p>
+        <div className="flex">
+          <span>
+            <p>
+              No matter what wounds or sorrows they seek relief from, or how
+              they found their way here, to all of us, the Moonrise Hermitage is
+              a symbol, an icon and a message of hope that alights the darkest
+              night as does the Moon herself: By the Goddess’ grace, there is
+              sanctuary still in a war-torn world.
+            </p>
+          </span>
+          <img className="oakLogo" src={logo} alt="hermitage logo" />
+        </div>
       </div>
     </div>
   );
