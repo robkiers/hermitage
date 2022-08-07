@@ -8,11 +8,10 @@ import BackgroundCanvas from "../BackgroundCanvas";
 
 const Background = (props: any) => {
   const { zoom, zoomLocation } = props;
-  // const enrichedLib = LoadBackgroundLibrary();
   const [enrichedLib, setEnrichedLib] = useState<imagePart[]>([]);
 
   const cursorPosition = useMousePosition();
-  const [zoomPercentage, setZoomPercentage] = useState(0);
+  const [zoomPercentage, setZoomPercentage] = useState(1);
   const [location, setLocation] = useState("zoomDefault");
 
   const runTime = 750;
@@ -31,7 +30,7 @@ const Background = (props: any) => {
       }, runTime / 30);
       return () => clearTimeout(timerId);
     }
-  });
+  }, [zoomLocation, location, zoomPercentage]);
 
   useEffect(() => {
     LoadBackgroundLibrary().then((lib: any) => {

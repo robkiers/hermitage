@@ -1,9 +1,13 @@
-import img11 from "./layer11.png";
-import img12 from "./layer12.png";
-import img13 from "./layer13.png";
-import img14 from "./layer14.png";
-import img15 from "./layer15.png";
-import { useEffect, useState } from "react";
+// import img11 from "./layer11.png";
+// import img12 from "./layer12.png";
+// import img13 from "./layer13.png";
+// import img14 from "./layer14.png";
+// import img15 from "./layer15.png";
+import Background from "./BACKGROUND.jpg";
+import Commons from "./commons.png";
+import Temples from "./temples.png";
+import Tower from "./tower.png";
+import Valley from "./valley.png";
 
 export interface imageZoom {
   x: number;
@@ -38,7 +42,7 @@ async function LoadBackgroundLibrary() {
     {
       id: "img05",
       desc: "background",
-      src: img15,
+      src: Background,
       adjustX: 0.3,
       adjustY: 0.3,
       zoomDefault: { x: 0, y: 0, zoom: 1 },
@@ -50,7 +54,7 @@ async function LoadBackgroundLibrary() {
     {
       id: "img04",
       desc: "valley",
-      src: img14,
+      src: Valley,
       adjustX: 0.4,
       adjustY: 0.4,
       zoomDefault: { x: 0, y: 0, zoom: 1 },
@@ -62,7 +66,7 @@ async function LoadBackgroundLibrary() {
     {
       id: "img03",
       desc: "temple",
-      src: img13,
+      src: Temples,
       adjustX: 0.5,
       adjustY: 0.5,
       zoomDefault: { x: 0, y: 0, zoom: 1 },
@@ -74,7 +78,7 @@ async function LoadBackgroundLibrary() {
     {
       id: "img02",
       desc: "commons",
-      src: img12,
+      src: Commons,
       adjustX: 1,
       adjustY: 1,
       zoomDefault: { x: 0, y: 0, zoom: 1 },
@@ -86,7 +90,7 @@ async function LoadBackgroundLibrary() {
     {
       id: "img01",
       desc: "tower",
-      src: img11,
+      src: Tower,
       adjustX: 1,
       adjustY: 1,
       zoomDefault: { x: 0, y: 0, zoom: 1 },

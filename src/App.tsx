@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 
 import Header from "./layouts/Header";
 import BeautifyUI from "./layouts/BeautifyUI";
-import Oak from "./pages/oak";
+import Oak from "./pages/oak/oak";
 import Commons from "./pages/commons";
 import Background from "./components/background/Background";
-import { fromEvent, map, tap } from "rxjs";
+import { fromEvent, map } from "rxjs";
 
 function App() {
   const [zoomLocation, setZoomLocation] = useState({
@@ -14,13 +14,21 @@ function App() {
     previous: "zoomDefault",
     date: 0,
   });
+
   const [showUI, setShowUI] = useState(true);
 
   useEffect(() => {
-    const sub = fromEvent<MouseEvent>(document, "mousedown")
+    const sub = fromEvent<MouseEvent>(document, "click")
       .pipe(map((event: MouseEvent) => event))
       .subscribe((event) => {
-        console.log(event);
+        console.log(zoomLocation.current);
+        console.log(event.target);
+        if (
+          zoomLocation.current !== "zoomDefault" &&
+          (event.target as Element).id === "main"
+        ) {
+          zoom("zoomDefault");
+        }
       });
 
     return () => {
@@ -29,6 +37,7 @@ function App() {
   }, []);
 
   function zoom(prop: string) {
+    console.log("zoom");
     if (prop !== zoomLocation.current) {
       const timed = Date.now();
       setZoomLocation({
@@ -44,12 +53,14 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App" id="main">
       {showUI ? <Header zoom={zoom}></Header> : null}
-      {showUI && zoomLocation.current === "zoomOak" ? <Oak></Oak> : null}
-      {showUI && zoomLocation.current === "zoomCommons" ? (
-        <Commons></Commons>
-      ) : null}
+      <div className="page">
+        {showUI && zoomLocation.current === "zoomOak" ? <Oak></Oak> : null}
+        {showUI && zoomLocation.current === "zoomCommons" ? (
+          <Commons></Commons>
+        ) : null}
+      </div>
       <BeautifyUI toggleUI={toggleUI} showUI={showUI}></BeautifyUI>
       <div>
         <Background zoom={zoom} zoomLocation={zoomLocation}></Background>
