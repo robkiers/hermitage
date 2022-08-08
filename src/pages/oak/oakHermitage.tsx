@@ -2,7 +2,7 @@ import logo from "../../assets/logo.png"
 
 function OakHermitage() {
   return (
-    <div className="oakText">
+    <div className="">
       <h1>The Moonrise Hermitage</h1>
       <p>
         Though many Kaldorei are solitary in nature, they know that the lone

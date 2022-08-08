@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Header from "./layouts/Header";
 import BeautifyUI from "./layouts/BeautifyUI";
 import Oak from "./pages/oak/oak";
-import Commons from "./pages/commons";
+import Commons from "./pages/commons/commons";
 import Background from "./components/background/Background";
 import { fromEvent, map } from "rxjs";
 
@@ -23,10 +23,7 @@ function App() {
       .subscribe((event) => {
         console.log(zoomLocation.current);
         console.log(event.target);
-        if (
-          zoomLocation.current !== "zoomDefault" &&
-          (event.target as Element).id === "main"
-        ) {
+        if (zoomLocation.current !== "zoomDefault" && (event.target as Element).id === "main") {
           zoom("zoomDefault");
         }
       });
@@ -53,19 +50,16 @@ function App() {
   }
 
   return (
-    <div className="App" id="main">
+    <>
       {showUI ? <Header zoom={zoom}></Header> : null}
-      <div className="page">
-        {showUI && zoomLocation.current === "zoomOak" ? <Oak></Oak> : null}
-        {showUI && zoomLocation.current === "zoomCommons" ? (
-          <Commons></Commons>
-        ) : null}
-      </div>
+      {/* <div className="page"> */}
+      {showUI && zoomLocation.current === "zoomOak" ? <Oak></Oak> : null}
+      {showUI && zoomLocation.current === "zoomCommons" ? <Commons></Commons> : null}
+      {/* </div> */}
       <BeautifyUI toggleUI={toggleUI} showUI={showUI}></BeautifyUI>
-      <div>
-        <Background zoom={zoom} zoomLocation={zoomLocation}></Background>
-      </div>
-    </div>
+
+      <Background zoom={zoom} zoomLocation={zoomLocation}></Background>
+    </>
   );
 }
 

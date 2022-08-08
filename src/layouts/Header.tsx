@@ -1,4 +1,5 @@
 import logo from "../assets/logo.png";
+import "./Header.scss";
 
 const Header = (props: any) => {
   const { zoom } = props;
@@ -15,6 +16,7 @@ const Header = (props: any) => {
         <button onClick={() => zoom("zoomTemple")}>Temple</button>
         <button onClick={() => zoom("zoomCommons")}>Commons</button>
         <button onClick={() => zoom("zoomOak")}>Central Oak</button>
+        {/* <button onClick={() => }>OC</button> */}
         {/* <button onClick={() => zoom("zoomArlien")}>Arlièn</button> */}
       </nav>
     </div>

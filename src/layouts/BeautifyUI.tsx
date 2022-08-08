@@ -1,4 +1,5 @@
 import Player from "../components/AudioPlayer";
+import "./BeautifyUI.scss";
 
 const BeautifyUI = (props: any) => {
   const { toggleUI, showUI } = props;
@@ -11,10 +12,7 @@ const BeautifyUI = (props: any) => {
         </button>
         <Player url={"../assets/nightsong.mp3"}></Player>
       </div>
-      <div
-        className={showUI ? "cornerInteraction hidden" : "cornerInteraction"}
-        onClick={() => toggleUI()}
-      >
+      <div className={showUI ? "cornerInteraction hidden" : "cornerInteraction"} onClick={() => toggleUI()}>
         <span>Click in this corner again to display UI</span>
       </div>
     </div>

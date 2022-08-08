@@ -5,6 +5,7 @@ import LoadBackgroundLibrary, {
   imageZoom,
 } from "./BackgroundLibrary";
 import BackgroundCanvas from "../BackgroundCanvas";
+import "./Background.scss";
 
 const Background = (props: any) => {
   const { zoom, zoomLocation } = props;
