@@ -3,6 +3,10 @@ function CommonsDescription() {
     <div>
       <h1>The Commons</h1>
       <p>
+        Where the temple is the soul of the Hermitage, the commons is the beating heart of the Hermitage. This is where
+        the inhabitants ply their trade, rest and gather for every night life.
+      </p>
+      <p>
         A tree rises up besides a cliff edge, a tower entwined in it. A branch from that tree has been woven into a
         bridge that leads to a walkway that runs along the cliff. This promenade is roofed over and has several sections
         sealed with divider screens making for smaller rooms fit for crafts and personal areas. The commons is split in
