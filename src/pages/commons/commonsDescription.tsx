@@ -1,4 +1,4 @@
-function TempleDescription() {
+function CommonsDescription() {
   return (
     <div>
       <h1>The Commons</h1>
@@ -47,4 +47,4 @@ function TempleDescription() {
   );
 }
 
-export default TempleDescription;
+export default CommonsDescription;

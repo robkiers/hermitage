@@ -1,24 +1,28 @@
 import { useState } from "react";
+import CommonsDescription from "./commonsDescription";
+import CommonsImage from "./commonsImage";
 
 function Commons() {
-  const [state, setState] = useState("HERMITAGE");
+  const [state, setState] = useState("COMMONS");
 
   return (
     <div className="oakDisplay">
       <div className="oakButtons">
         <button className="small" onClick={() => setState("COMMONS")}>
-          The Commons
-        </button>
-        <button className="small" onClick={() => setState("DESCRIPTION")}>
           Description
+        </button>
+        <button className="small" onClick={() => setState("TRADE")}>
+          Trade
         </button>
         <button className="small" onClick={() => setState("IMAGES")}>
           Illustrations
         </button>
       </div>
       <div className="oakText">
-        {/* {state === "HERMITAGE" ? <OakHermitage></OakHermitage> : null} */}
-        {/* {state === "DESCRIPTION" ? <OakDescription></OakDescription> : null} */}
+        {state === "COMMONS" ? (
+          <CommonsDescription></CommonsDescription>
+        ) : null}
+        {state === "IMAGES" ? <CommonsImage></CommonsImage> : null}
       </div>
     </div>
   );

@@ -1,9 +1,27 @@
 import { useState } from "react";
+import details from "./assets/details-commons.jpg";
+import map from "./assets/map-commons2.jpg";
+import iso from "./assets/iso-commons.jpg";
 
-function TempleImage() {
+function CommonsImage() {
   const [state, setState] = useState("HERMITAGE");
 
-  return <div></div>;
+  return (
+    <div>
+      <div className="previewContainer">
+        <h1>Map</h1>
+        <img className="previewImage" src={map} alt="preview details" />
+      </div>
+      <div className="previewContainer">
+        <h1>Iso</h1>
+        <img className="previewImage" src={iso} alt="preview details" />
+      </div>
+      <div className="previewContainer">
+        <h1>Details</h1>
+        <img className="previewImage" src={details} alt="preview details" />
+      </div>
+    </div>
+  );
 }
 
-export default TempleImage;
+export default CommonsImage;
