@@ -13,12 +13,14 @@ const Header = (props: any) => {
         </span>
       </div>
       <nav>
+        <button onClick={() => zoom("zoomOak")}>Central Oak</button>
         <button onClick={() => zoom("zoomTemple")}>Temple</button>
         <button onClick={() => zoom("zoomCommons")}>Commons</button>
-        <button onClick={() => zoom("zoomOak")}>Central Oak</button>
-        <button>OC</button>
         {/* <button onClick={() => zoom("zoomArlien")}>Arlièn</button> */}
       </nav>
+      <div>
+        <button>OC</button>
+      </div>
     </div>
   );
 };

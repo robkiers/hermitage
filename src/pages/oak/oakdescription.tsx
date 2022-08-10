@@ -47,6 +47,12 @@ function OakDescription() {
         Hermitage but that have been demolished in ages past when age caught up
         with them.
       </p>
+      <p>
+        On the slopes of the valley, there grow plenty of herbs and fruit trees.
+        The presence of the druids boosting the growth of the flora. Among these
+        there are the vineyards that overgrow an old ruin on the eastern slope
+        of the Hermitage.
+      </p>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CommonsDescription from "./commonsDescription";
 import CommonsImage from "./commonsImage";
+import CommonsTrade from "./commonsTrade";
 
 function Commons() {
   const [state, setState] = useState("COMMONS");
@@ -15,14 +16,13 @@ function Commons() {
           Trade
         </button>
         <button className="small" onClick={() => setState("IMAGES")}>
-          Illustrations
+          Images
         </button>
       </div>
       <div className="oakText">
-        {state === "COMMONS" ? (
-          <CommonsDescription></CommonsDescription>
-        ) : null}
+        {state === "COMMONS" ? <CommonsDescription></CommonsDescription> : null}
         {state === "IMAGES" ? <CommonsImage></CommonsImage> : null}
+        {state === "TRADE" ? <CommonsTrade></CommonsTrade> : null}
       </div>
     </div>
   );

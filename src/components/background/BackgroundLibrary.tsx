@@ -8,6 +8,7 @@ import Commons from "./commons.png";
 import Temples from "./temples.png";
 import Tower from "./tower.png";
 import Valley from "./valley.png";
+import Sign from "./sig.png";
 
 export interface imageZoom {
   x: number;
@@ -98,6 +99,18 @@ async function LoadBackgroundLibrary() {
       zoomOak: { x: 0, y: -0.25, zoom: 1.5 },
       zoomTemple: { x: 0.75, y: 0.1, zoom: 1.4 },
       zoomArlien: { x: -10, y: 325, zoom: 2.25 },
+    },
+    {
+      id: "sign",
+      desc: "sign",
+      src: Sign,
+      adjustX: 1,
+      adjustY: 1,
+      zoomDefault: { x: -0.1, y: 0.9, zoom: 0.07 },
+      zoomCommons: { x: -0.1, y: 0.9, zoom: 0.07 },
+      zoomOak: { x: -0.1, y: 0.9, zoom: 0.07 },
+      zoomTemple: { x: -0.1, y: 0.9, zoom: 0.07 },
+      zoomArlien: { x: -0.1, y: 0.9, zoom: 0.07 },
     },
   ];
 
