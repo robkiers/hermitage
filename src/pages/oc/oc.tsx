@@ -1,7 +1,7 @@
 function OC() {
   return (
-    <div className="oakDisplay">
-      <div className="oakText">
+    <div className="pageDisplay">
+      <div className="pageText">
         <h1>Out of character</h1>
         <p>
           The Moonrise Hermitage focuses more on the civilian part of Kaldorei

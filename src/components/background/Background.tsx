@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 import useMousePosition from "../useMousePosition";
-import LoadBackgroundLibrary, {
-  imagePart,
-  imageZoom,
-} from "./BackgroundLibrary";
+import LoadBackgroundLibrary, { imagePart, imageZoom } from "./BackgroundLibrary";
 import BackgroundCanvas from "../BackgroundCanvas";
 import "./Background.scss";
 
 const Background = (props: any) => {
-  const { zoom, zoomLocation } = props;
+  const { zoomLocation } = props;
   const [enrichedLib, setEnrichedLib] = useState<imagePart[]>([]);
 
   const cursorPosition = useMousePosition();
   const [zoomPercentage, setZoomPercentage] = useState(1);
-  const [location, setLocation] = useState("zoomDefault");
+  const [location, setLocation] = useState("MAIN");
 
   const runTime = 750;
 
@@ -22,7 +19,7 @@ const Background = (props: any) => {
     const animationEndTime = zoomLocation.date + runTime;
     if (location !== zoomLocation.current) {
       setLocation(zoomLocation.current);
-      setZoomPercentage(0);
+      setZoomPercentage(0.001);
     }
 
     if (zoomPercentage < 1) {
@@ -51,12 +48,8 @@ const Background = (props: any) => {
   }
 
   function move(img: imagePart, attribute: string) {
-    const newPosition = (
-      img[zoomLocation.current as keyof imagePart] as imageZoom
-    )[attribute as keyof imageZoom];
-    const oldPosition = (
-      img[zoomLocation.previous as keyof imagePart] as imageZoom
-    )[attribute as keyof imageZoom];
+    const newPosition = (img[zoomLocation.current as keyof imagePart] as imageZoom)[attribute as keyof imageZoom];
+    const oldPosition = (img[zoomLocation.previous as keyof imagePart] as imageZoom)[attribute as keyof imageZoom];
 
     const distance = (newPosition - oldPosition) * zoomPercentage;
 
@@ -101,12 +94,7 @@ const Background = (props: any) => {
     });
   }
 
-  return (
-    <BackgroundCanvas
-      draw={drawFunc}
-      onClick={() => zoom("zoomDefault")}
-    ></BackgroundCanvas>
-  );
+  return <BackgroundCanvas draw={drawFunc}></BackgroundCanvas>;
 };
 
 export default Background;

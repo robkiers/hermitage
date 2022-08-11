@@ -7,8 +7,8 @@ function Commons() {
   const [state, setState] = useState("COMMONS");
 
   return (
-    <div className="oakDisplay">
-      <div className="oakButtons">
+    <div className="pageDisplay">
+      <div className="pageButtons">
         <button className="small" onClick={() => setState("COMMONS")}>
           Description
         </button>
@@ -19,7 +19,7 @@ function Commons() {
           Images
         </button>
       </div>
-      <div className="oakText">
+      <div className="pageText">
         {state === "COMMONS" ? <CommonsDescription></CommonsDescription> : null}
         {state === "IMAGES" ? <CommonsImage></CommonsImage> : null}
         {state === "TRADE" ? <CommonsTrade></CommonsTrade> : null}

@@ -83,7 +83,15 @@ button {
   }
 }
 
-.oakDisplay {
+.page{
+  transition: opacity 0.5s;
+  opacity: 0;
+  &.show {
+    opacity: 1;
+  }
+}
+
+.pageDisplay {
   margin-left: 10%;
   width: 40%;
 
@@ -96,14 +104,16 @@ button {
   background-color: #020114e0;
   box-shadow: 0px 0px 50px 50px #020114e0;
   margin-top: 5rem;
-  .oakButtons {
+
+
+  .pageButtons {
     padding-top: 1rem;
     padding-bottom: 1rem;
     display: flex;
     justify-content: center;
     gap: 20px;
   }
-  .oakText {
+  .pageText {
     overflow-y: auto;
     h1 {
       font-family: "Mate SC", serif;

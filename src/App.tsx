@@ -8,13 +8,16 @@ import Commons from "./pages/commons/commons";
 import Background from "./components/background/Background";
 import { fromEvent, map } from "rxjs";
 import Temple from "./pages/temple/temple";
+import OC from "./pages/oc/oc";
 
 function App() {
   const [zoomLocation, setZoomLocation] = useState({
-    current: "zoomDefault",
-    previous: "zoomDefault",
+    current: "MAIN",
+    previous: "MAIN",
     date: 0,
   });
+
+  const [page, setPage] = useState("NONE");
 
   const [showUI, setShowUI] = useState(true);
 
@@ -22,23 +25,35 @@ function App() {
     const sub = fromEvent<MouseEvent>(document, "click")
       .pipe(map((event: MouseEvent) => event))
       .subscribe((event) => {
-        console.log(zoomLocation.current);
-        console.log(event.target);
-        if (
-          zoomLocation.current !== "zoomDefault" &&
-          (event.target as Element).id === "main"
-        ) {
-          zoom("zoomDefault");
+        if (zoomLocation.current !== "MAIN" && (event.target as Element).id === "root") {
+          navigate("NONE");
         }
       });
-
     return () => {
       sub.unsubscribe();
     };
-  }, []);
+  });
+
+  function navigate(prop: string) {
+    switch (prop) {
+      case "OAK":
+      case "COMMONS":
+      case "TEMPLE":
+        zoom(prop);
+        setPage(prop);
+        break;
+      case "OC":
+        zoom("MAIN");
+        setPage(prop);
+        break;
+      case "NONE":
+      default:
+        zoom("MAIN");
+        setPage("NONE");
+    }
+  }
 
   function zoom(prop: string) {
-    console.log("zoom");
     if (prop !== zoomLocation.current) {
       const timed = Date.now();
       setZoomLocation({
@@ -53,19 +68,34 @@ function App() {
     setShowUI(!showUI);
   }
 
+  function setStyle(show: boolean) {
+    return show ? "page show" : "page";
+  }
+
+  function renderPage(prop: string) {
+    switch (prop) {
+      case "OAK":
+        return <Oak></Oak>;
+      case "COMMONS":
+        return <Commons></Commons>;
+      case "TEMPLE":
+        return <Temple></Temple>;
+      case "OC":
+        return <OC></OC>;
+      case "MAIN":
+      default:
+        return null;
+    }
+  }
+
   return (
     <>
-      {showUI ? <Header zoom={zoom}></Header> : null}
-      {showUI && zoomLocation.current === "zoomOak" ? <Oak></Oak> : null}
-      {showUI && zoomLocation.current === "zoomCommons" ? (
-        <Commons></Commons>
-      ) : null}
-      {showUI && zoomLocation.current === "zoomTemple" ? (
-        <Temple></Temple>
-      ) : null}
+      <span className={setStyle(showUI)}>
+        <Header navigate={navigate}></Header>
+      </span>
+      <span className={setStyle(showUI)}>{renderPage(page)}</span>
       <BeautifyUI toggleUI={toggleUI} showUI={showUI}></BeautifyUI>
-
-      <Background zoom={zoom} zoomLocation={zoomLocation}></Background>
+      <Background zoomLocation={zoomLocation}></Background>
     </>
   );
 }

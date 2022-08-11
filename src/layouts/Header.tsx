@@ -2,24 +2,23 @@ import logo from "../assets/logo.png";
 import "./Header.scss";
 
 const Header = (props: any) => {
-  const { zoom } = props;
+  const { navigate } = props;
 
   return (
     <div className="header margin-top">
-      <div className="logoContainer" onClick={() => zoom("zoomDefault")}>
+      <div className="logoContainer" onClick={() => navigate("MAIN")}>
         <img className="headerLogo" src={logo} alt="hermitage logo" />
         <span className="headerTitle">
           Moonrise <br /> Hermitage
         </span>
       </div>
       <nav>
-        <button onClick={() => zoom("zoomOak")}>Central Oak</button>
-        <button onClick={() => zoom("zoomTemple")}>Temple</button>
-        <button onClick={() => zoom("zoomCommons")}>Commons</button>
-        {/* <button onClick={() => zoom("zoomArlien")}>Arlièn</button> */}
+        <button onClick={() => navigate("OAK")}>Central Oak</button>
+        <button onClick={() => navigate("TEMPLE")}>Temple</button>
+        <button onClick={() => navigate("COMMONS")}>Commons</button>
       </nav>
       <div>
-        <button>OC</button>
+        <button onClick={() => navigate("OC")}>OC</button>
       </div>
     </div>
   );

@@ -7,8 +7,8 @@ function Temple() {
   const [state, setState] = useState("DESCRIPTION");
 
   return (
-    <div className="oakDisplay">
-      <div className="oakButtons">
+    <div className="pageDisplay">
+      <div className="pageButtons">
         <button className="small" onClick={() => setState("DESCRIPTION")}>
           Description
         </button>
@@ -19,7 +19,7 @@ function Temple() {
           Lore
         </button>
       </div>
-      <div className="oakText">
+      <div className="pageText">
         {state === "DESCRIPTION" ? (
           <TempleDescription></TempleDescription>
         ) : null}

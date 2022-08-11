@@ -6,9 +6,21 @@ import OakImages from "./oakImages";
 function Oak() {
   const [state, setState] = useState("HERMITAGE");
 
+  function renderPage(prop: string) {
+    switch (prop) {
+      case "DESCRIPTION":
+        return <OakDescription></OakDescription>;
+      case "IMAGES":
+        return <OakImages></OakImages>;
+      case "HERMITAGE":
+      default:
+        return <OakHermitage></OakHermitage>;
+    }
+  }
+
   return (
-    <div className="oakDisplay">
-      <div className="oakButtons">
+    <div className="pageDisplay">
+      <div className="pageButtons">
         <button className="small" onClick={() => setState("HERMITAGE")}>
           Hermitage
         </button>
@@ -19,11 +31,7 @@ function Oak() {
           Images
         </button>
       </div>
-      <div className="oakText">
-        {state === "HERMITAGE" ? <OakHermitage></OakHermitage> : null}
-        {state === "DESCRIPTION" ? <OakDescription></OakDescription> : null}
-        {state === "IMAGES" ? <OakImages></OakImages> : null}
-      </div>
+      <div className="pageText">{renderPage(state)}</div>
     </div>
   );
 }

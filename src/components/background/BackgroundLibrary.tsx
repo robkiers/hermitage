@@ -23,11 +23,10 @@ export interface imagePart {
   image: HTMLImageElement;
   adjustX: number;
   adjustY: number;
-  zoomDefault: imageZoom;
-  zoomCommons: imageZoom;
-  zoomOak: imageZoom;
-  zoomTemple: imageZoom;
-  zoomArlien: imageZoom;
+  MAIN: imageZoom;
+  COMMONS: imageZoom;
+  OAK: imageZoom;
+  TEMPLE: imageZoom;
 }
 
 async function LoadBackgroundLibrary() {
@@ -46,11 +45,10 @@ async function LoadBackgroundLibrary() {
       src: Background,
       adjustX: 0.3,
       adjustY: 0.3,
-      zoomDefault: { x: 0, y: 0, zoom: 1 },
-      zoomCommons: { x: 0.5, y: -0.2, zoom: 1.6 },
-      zoomOak: { x: 0, y: -0.5, zoom: 1.5 },
-      zoomTemple: { x: 0.5, y: -0.1, zoom: 1.75 },
-      zoomArlien: { x: 50, y: 325, zoom: 2.5 },
+      MAIN: { x: 0, y: 0, zoom: 1 },
+      COMMONS: { x: 0.5, y: -0.2, zoom: 1.6 },
+      OAK: { x: 0, y: -0.5, zoom: 1.5 },
+      TEMPLE: { x: 0.5, y: -0.1, zoom: 1.75 },
     },
     {
       id: "img04",
@@ -58,11 +56,10 @@ async function LoadBackgroundLibrary() {
       src: Valley,
       adjustX: 0.4,
       adjustY: 0.4,
-      zoomDefault: { x: 0, y: 0, zoom: 1 },
-      zoomCommons: { x: 0.75, y: -0.6, zoom: 1.75 },
-      zoomOak: { x: -0.15, y: -0.5, zoom: 1.5 },
-      zoomTemple: { x: 0.75, y: 0.15, zoom: 1.75 },
-      zoomArlien: { x: -10, y: 325, zoom: 2.25 },
+      MAIN: { x: 0, y: 0, zoom: 1 },
+      COMMONS: { x: 0.75, y: -0.6, zoom: 1.75 },
+      OAK: { x: -0.15, y: -0.5, zoom: 1.5 },
+      TEMPLE: { x: 0.75, y: 0.15, zoom: 1.75 },
     },
     {
       id: "img03",
@@ -70,11 +67,10 @@ async function LoadBackgroundLibrary() {
       src: Temples,
       adjustX: 0.5,
       adjustY: 0.5,
-      zoomDefault: { x: 0, y: 0, zoom: 1 },
-      zoomCommons: { x: 0.8, y: -0.8, zoom: 1.75 },
-      zoomOak: { x: -0, y: -0.7, zoom: 1.7 },
-      zoomTemple: { x: 0.8, y: 0.05, zoom: 1.75 },
-      zoomArlien: { x: -10, y: 325, zoom: 2.25 },
+      MAIN: { x: 0, y: 0, zoom: 1 },
+      COMMONS: { x: 0.8, y: -0.8, zoom: 1.75 },
+      OAK: { x: -0, y: -0.7, zoom: 1.7 },
+      TEMPLE: { x: 0.8, y: 0.05, zoom: 1.75 },
     },
     {
       id: "img02",
@@ -82,11 +78,10 @@ async function LoadBackgroundLibrary() {
       src: Commons,
       adjustX: 1,
       adjustY: 1,
-      zoomDefault: { x: 0, y: 0, zoom: 1 },
-      zoomCommons: { x: 0.75, y: -0.85, zoom: 1.75 },
-      zoomOak: { x: -0, y: -0.75, zoom: 1.75 },
-      zoomTemple: { x: 0.6, y: 0.2, zoom: 1.6 },
-      zoomArlien: { x: -10, y: 325, zoom: 2.25 },
+      MAIN: { x: 0, y: 0, zoom: 1 },
+      COMMONS: { x: 0.75, y: -0.85, zoom: 1.75 },
+      OAK: { x: -0, y: -0.75, zoom: 1.75 },
+      TEMPLE: { x: 0.6, y: 0.2, zoom: 1.6 },
     },
     {
       id: "img01",
@@ -94,11 +89,10 @@ async function LoadBackgroundLibrary() {
       src: Tower,
       adjustX: 1,
       adjustY: 1,
-      zoomDefault: { x: 0, y: 0, zoom: 1 },
-      zoomCommons: { x: 0.75, y: -0.9, zoom: 1.75 },
-      zoomOak: { x: 0, y: -0.25, zoom: 1.5 },
-      zoomTemple: { x: 0.75, y: 0.1, zoom: 1.4 },
-      zoomArlien: { x: -10, y: 325, zoom: 2.25 },
+      MAIN: { x: 0, y: 0, zoom: 1 },
+      COMMONS: { x: 0.75, y: -0.9, zoom: 1.75 },
+      OAK: { x: 0, y: -0.25, zoom: 1.5 },
+      TEMPLE: { x: 0.75, y: 0.1, zoom: 1.4 },
     },
     {
       id: "sign",
@@ -106,11 +100,10 @@ async function LoadBackgroundLibrary() {
       src: Sign,
       adjustX: 1,
       adjustY: 1,
-      zoomDefault: { x: -0.1, y: 0.9, zoom: 0.07 },
-      zoomCommons: { x: -0.1, y: 0.9, zoom: 0.07 },
-      zoomOak: { x: -0.1, y: 0.9, zoom: 0.07 },
-      zoomTemple: { x: -0.1, y: 0.9, zoom: 0.07 },
-      zoomArlien: { x: -0.1, y: 0.9, zoom: 0.07 },
+      MAIN: { x: -0.1, y: 0.9, zoom: 0.07 },
+      COMMONS: { x: -0.1, y: 0.9, zoom: 0.07 },
+      OAK: { x: -0.1, y: 0.9, zoom: 0.07 },
+      TEMPLE: { x: -0.1, y: 0.9, zoom: 0.07 },
     },
   ];
 
@@ -138,8 +131,6 @@ async function LoadBackgroundLibrary() {
       return temp as imagePart;
     })
   );
-
-  // return enrichedLib;
 }
 
 export default LoadBackgroundLibrary;
