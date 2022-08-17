@@ -5,7 +5,7 @@ import iso from "./assets/iso-commons.jpg";
 import Modal from "../../components/modal/Modal";
 
 function CommonsImage() {
-  const [state, setState] = useState("HERMITAGE");
+  // const [state, setState] = useState("HERMITAGE");
 
   const toggle = () => Modal(<h1>Success</h1>);
 

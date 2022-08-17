@@ -32,9 +32,7 @@ function OC() {
           Artwork: Main background by
           <a href="https://www.artstation.com/aesthaal">Aestal</a>
         </p>
-        <p>
-            
-        </p>
+        <p>additional Artwork and Coding by Rob</p>
         <p>
           World of Warcraft is ©2004-{new Date().getFullYear()} Blizzard
           Entertainment, Inc. All rights reserved.

@@ -25,7 +25,10 @@ function App() {
     const sub = fromEvent<MouseEvent>(document, "click")
       .pipe(map((event: MouseEvent) => event))
       .subscribe((event) => {
-        if (zoomLocation.current !== "MAIN" && (event.target as Element).id === "root") {
+        if (
+          zoomLocation.current !== "MAIN" &&
+          (event.target as Element).id === "root"
+        ) {
           navigate("NONE");
         }
       });
@@ -93,7 +96,7 @@ function App() {
       <span className={setStyle(showUI)}>
         <Header navigate={navigate}></Header>
       </span>
-      <span className={setStyle(showUI)}>{renderPage(page)}</span>
+      {renderPage(page)}
       <BeautifyUI toggleUI={toggleUI} showUI={showUI}></BeautifyUI>
       <Background zoomLocation={zoomLocation}></Background>
     </>
