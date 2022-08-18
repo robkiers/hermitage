@@ -9,6 +9,11 @@
   flex-direction: column;
 }
 
+a {
+  text-decoration: underline;
+  color: rgb(189, 229, 255);
+}
+
 .App {
   display: inline-block;
   max-height: 100%;
@@ -83,7 +88,7 @@ button {
   }
 }
 
-.page{
+.page {
   transition: opacity 0.5s;
   opacity: 0;
   &.show {
@@ -104,7 +109,6 @@ button {
   background-color: #020114e0;
   box-shadow: 0px 0px 50px 50px #020114e0;
   margin-top: 5rem;
-
 
   .pageButtons {
     padding-top: 1rem;

@@ -18,6 +18,9 @@ function Commons() {
         <button className="small" onClick={() => setState("IMAGES")}>
           Images
         </button>
+        {/* <button className="small" onClick={() => setState("RESERVES")}>
+          Reserves
+        </button> */}
       </div>
       <div className="pageText">
         {state === "COMMONS" ? <CommonsDescription></CommonsDescription> : null}
