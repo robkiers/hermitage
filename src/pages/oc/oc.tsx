@@ -11,17 +11,15 @@ function OC() {
         </p>
         <p>
           Our home is in Ashenvale from where we reach out towards the rest of Kalimdor and beyond. We actively help
-          roleplayers creating their own stories and events, to see them grow and evolve through roleplay.
-        </p>
-        <p>
-          We expect our members to be mature, well mannered, well read on relevant lore, and open to ideas and
-          suggestions. We strife to work closely with other Kalimdor guilds both ICly and OOCly. In former times we were
-          part of the Kalimdor Project before this went dormant.
+          roleplayers creating their own stories and events, to see them grow and evolve through roleplay. We expect our
+          members to be mature, well mannered, well read on relevant lore, and open to ideas and suggestions. We strife
+          to work closely with other Kalimdor guilds both ICly and OOCly.
         </p>
         <p>
           The Moonrise Hermitage rejects only heretics and the most unrepentant criminals. The Deathknights and Illidari
           that have returned have no place either in a community of villagers and militia.
         </p>
+        <p>Contact us ingame by reaching out to Arlièn or Irrisisa.</p>
         <h1>Credits</h1>
         <p>
           Artwork: Main background by <a href="https://www.artstation.com/aesthaal">Aestal</a>
