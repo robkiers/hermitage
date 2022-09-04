@@ -12,11 +12,11 @@ function Temple() {
         <button className="small" onClick={() => setState("DESCRIPTION")}>
           Description
         </button>
-        <button className="small" onClick={() => setState("IMAGES")}>
-          Images
-        </button>
         <button className="small" onClick={() => setState("LORE")}>
           Lore
+        </button>
+        <button className="small" onClick={() => setState("IMAGES")}>
+          Images
         </button>
       </div>
       <div className="pageText">
