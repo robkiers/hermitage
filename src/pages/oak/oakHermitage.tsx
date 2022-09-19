@@ -1,4 +1,4 @@
-import logo from "../../assets/logo.png"
+import logo from "../../assets/logo.png";
 
 function OakHermitage() {
   return (
@@ -14,10 +14,10 @@ function OakHermitage() {
       <p>
         The Moonrise Hermitage began as a secluded Sisterhood cloister, where
         sisters that had suffered injury of body or mind – trauma or loss -
-        could come for rest, healing, tranquility, in a place where this unity
-        was emphasized. Meditation, the purity of the hunt, seeing nature in
-        work in deep communion with the sisters and the Goddess… this was life
-        at the Hermitage for the first seven thousand years of its existence.
+        could come for rest, healing, tranquility, in a place where unity was
+        emphasized. Meditation, the purity of the hunt, seeing nature in work in
+        deep communion with the sisters and the Goddess… this was life at the
+        Hermitage for the first seven thousand years of its existence.
       </p>
       <p>
         Then came the Burning Legion again. The sanctity of Ashenvale disturbed
@@ -28,20 +28,20 @@ function OakHermitage() {
         anything in return. <br />
         This philosophy, seeing the unity and well-being of the Kaldorei and the
         Goddess’ Garden as the sole purpose and its own reward, has inspired
-        many of the refugees and mourners in the Hermitage’s care to remain and
+        many of the refugees and mourners in the Hermitage care to remain and
         help others, as they themselves were shown kindness and kinship in their
         darkest hour.
       </p>
       <p>
         Offering their crafts and skills in solidarity with their sisters and
         brothers, the Kaldorei at the Hermitage come from all stretches of the
-        road of life. Elders sit in the tranquil boughs, sharing their hard-won
+        paths of life. Elders sit in the tranquil boughs, sharing their hard-won
         wisdom and the experience of ages with younglings who have lost friends,
         families and more. Children play amidst the flowers, each caring for the
         younger, all learning the ways of the Hunt from the adults. Healers
         caring for the wounded, druids tending the twilight groves of Ashenvale.
-        Warriors, always too few, form a militia, the Grove Blades to safeguard
-        their kin and the lands they hold sacred.
+        Warriors, always too few, form a militia to safeguard their kin and the
+        lands they hold sacred.
       </p>
       <div className="flex">
         <span>

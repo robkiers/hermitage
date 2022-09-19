@@ -14,7 +14,7 @@ function TempleDescription() {
         waterfalls. An elevated platform gives space for the Sisterhood to perform their sermons.
       </p>
       <p>
-        Three doors lead to the adjacent building that the Sisterhood use in their nightly business. It is half open to
+        Two doors lead to the adjacent building that the Sisterhood use in their nightly business. It is half open to
         the elements outside with a secondary platform that holds a few smaller rooms. This building is set up between
         the walkways towards the two smaller towers. The northern tower is the inner sanctum of the Sisterhood, where
         they perform their sacred rituals to Elune that only the Priestesses are privy to. The other tower stands on a
