@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-// const nightsong = new Audio(require("../assets/nightsong.mp3"));
 
 const useAudio = (url: string) => {
   const [audio] = useState(new Audio(require("../assets/nightsong.mp3")));
-  //   const audio = useRef<HTMLAudioElement | undefined>(typeof Audio !== 'undefined' ? new Audio(url) : undefined);
   const [playing, setPlaying] = useState(false);
 
   const toggle = () => setPlaying(!playing);
@@ -12,14 +10,14 @@ const useAudio = (url: string) => {
     audio.volume = 0.1;
     audio.loop = true;
     playing ? audio.play() : audio.pause();
-  }, [playing]);
+  }, [playing, audio]);
 
   useEffect(() => {
     audio.addEventListener("ended", () => setPlaying(false));
     return () => {
       audio.removeEventListener("ended", () => setPlaying(false));
     };
-  }, []);
+  }, [audio]);
 
   return [playing, toggle] as const;
 };

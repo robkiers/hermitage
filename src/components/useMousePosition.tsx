@@ -20,7 +20,7 @@ function useMousePosition(delay = 10) {
     return () => {
       sub.unsubscribe()
     }
-  }, [])
+  }, [delay])
 
   return {
     mouseX: x,

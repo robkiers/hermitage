@@ -1,6 +1,5 @@
-_________________________
 
-export default function App() {
+// export default function App() {
   function getWindowWidth() {
     const { innerWidth: width, innerHeight: height } = window;
     return {
@@ -12,25 +11,25 @@ export default function App() {
   function handleClick(e) {
 
     if (zoomedIn === 0) {
-      setZoomstate(1);
+      setZoomState(1);
       setTimeout(() => {
-        setZoomstate(2);
+        setZoomState(2);
       }, 1000);
     } else if (zoomedIn === 1) {
-      setZoomstate(2);
+      setZoomState(2);
     } else if (zoomedIn === 2) {
-      setZoomstate(3);
+      setZoomState(3);
       setTimeout(() => {
-        setZoomstate(0);
+        setZoomState(0);
       }, 1000);
     } else if (zoomedIn === 3) {
-      setZoomstate(0);
+      setZoomState(0);
     }
   }
 
   const [xOffset, setXOffset] = useState(0);
   const [yOffset, setYOffset] = useState(0);
-  const [zoomedIn, setZoomstate] = useState(0);
+  const [zoomedIn, setZoomState] = useState(0);
 
   useEffect(() => {
     const screenSize = getWindowWidth();
@@ -95,3 +94,4 @@ export default function App() {
     }
     return style;
   }
+}

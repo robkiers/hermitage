@@ -164,6 +164,16 @@ button {
   top: 0;
 }
 
+.lorelist {
+  font-family: "Mate SC", serif;
+  font-size: 1.1rem;
+  margin-inline-start: 1rem;
+  letter-spacing: 0.3px;
+  li {
+    margin-top: 0.5rem;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -182,4 +192,30 @@ button {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.tooltip {
+  text-decoration: underline;
+  color: rgb(189, 229, 255);
+}
+
+.eye {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: solid 1px rgb(189, 229, 255);
+  border-radius:  75% 15%;
+  position: relative;
+  transform: rotate(45deg);
+}
+.eye:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: solid 1px rgb(189, 229, 255);
+  border-radius: 50%;
+  left: 3px;
+  top: 3px;
 }

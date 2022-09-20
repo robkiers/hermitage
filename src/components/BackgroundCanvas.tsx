@@ -5,10 +5,10 @@ const BackgroundCanvas = (props: any) => {
   const { draw, options, ...rest } = props;
   const canvasRef = useCanvas(draw, options);
 
-  function clearBackground(context: CanvasRenderingContext2D) {
-    const { width, height } = context.canvas;
-    context.clearRect(0, 0, width, height);
-  }
+  // function clearBackground(context: CanvasRenderingContext2D) {
+  //   const { width, height } = context.canvas;
+  //   context.clearRect(0, 0, width, height);
+  // }
   
   //   const { context, ...moreConfig } = options;
   //   return <canvas ref={canvasRef} {...rest} />;
@@ -31,8 +31,8 @@ const BackgroundCanvas = (props: any) => {
 
   // const pos = windowToCanvas(canvas, clientX, clientY);
   // canvas.style.cursor = 'move';
-  // setMouseDowmFlag(true); //  The control only performs MouseMove when the mouse is pressed
-  // setMouseDowmPos({
+  // setMouseDownFlag(true); //  The control only performs MouseMove when the mouse is pressed
+  // setMouseDownPos({
   //   x: pos.x,
   //   y: pos.y,
   // });

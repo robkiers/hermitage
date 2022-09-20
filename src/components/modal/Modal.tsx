@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 function Modal(content: any) {
   // const [state, setState] = useState(true);

@@ -1,4 +1,9 @@
+import { useState } from "react";
+import ReactTooltip from "react-tooltip";
+
 function CommonsTrade() {
+  const [tooltip, showTooltip] = useState(true);
+
   return (
     <div>
       <h1>Trade and Crafts</h1>
@@ -56,7 +61,20 @@ function CommonsTrade() {
       <h1>Lore</h1>
       <p>
         The libraries of the Hermitage are extensive and the more impressive tomes are sealed in the Temple. Though the
-        dwellers of the Hermitage are always eager to help, they approach this subject with care and deliberation.
+        dwellers of the Hermitage are always eager to help, they approach this subject with care and deliberation before
+        they can be{" "}
+        <span
+          className="tooltip"
+          data-tip="Do you or your guild need an adventure hook? Reach out to us and let's see what we can do. "
+          onMouseEnter={() => showTooltip(true)}
+          onMouseLeave={() => {
+            showTooltip(false);
+            setTimeout(() => showTooltip(true), 50);
+          }}
+        >
+          viewed by outsiders <div className="eye"></div>
+        </span>
+        .{tooltip && <ReactTooltip />}
       </p>
     </div>
   );
