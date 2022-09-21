@@ -46,6 +46,7 @@ function OC() {
         </p>
         <p>Additional Artwork and Coding by Rob</p>
         <p>World of Warcraft is ©2004-{new Date().getFullYear()} Blizzard Entertainment, Inc. All rights reserved.</p>
+        <p>Music is ©2004-{new Date().getFullYear()} Blizzard Entertainment, Inc. All rights reserved.</p>
       </div>
     </div>
   );

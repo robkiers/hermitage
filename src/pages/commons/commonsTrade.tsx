@@ -50,13 +50,14 @@ function CommonsTrade() {
       </p>
       <h1>Alchemy</h1>
       <p>
-        The alchemists of the Hermitage can brew many potions and elixirs. It has a most excellent laboratory where they
-        can work on distilling and producing the potions that are required. Over the years they have gained a lot of
-        experience with treating diseases and poisons caused by opposing alchemists such as the Undead or Goblins.
+        The alchemists of the Hermitage can brew many potions and elixirs. It has an expansive laboratory where they can
+        work on distilling and producing the potions that are required. Over the years they have gained a lot of
+        experience in events treating diseases and poisons developed by opposing alchemists such as the Undead or Goblins.
       </p>
       <p>
-        The alchemists can provide but reach out first so that the potions can be made to order. Most situations need a
-        different solution
+        The alchemists can provide but reach out first so that the potions can be made to order. Most situations require
+        a different solution tailored to the problem and ingredients may need to be gathered before such a process can
+        be set in started.
       </p>
       <h1>Lore</h1>
       <p>
@@ -72,7 +73,7 @@ function CommonsTrade() {
             setTimeout(() => showTooltip(true), 50);
           }}
         >
-          viewed by outsiders <div className="eye"></div>
+          viewed by outsiders <span className="eye"></span>
         </span>
         .{tooltip && <ReactTooltip />}
       </p>
