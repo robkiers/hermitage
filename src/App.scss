@@ -7,11 +7,15 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
+  --color-white: #ffffff;
+  --color-aqua: #bde5ff;
+  --color-darkblue: #110d24;
 }
 
 a {
   text-decoration: underline;
-  color: rgb(189, 229, 255);
+  color: #bde5ff;
 }
 
 .App {
@@ -27,7 +31,7 @@ a {
 .container {
   position: relative;
   overflow: hidden;
-  background-color: #110d24;
+  background-color: var(--color-darkblue);
 }
 
 .commonsDisplay .canvasBackground {
@@ -49,9 +53,9 @@ button {
   overflow: hidden;
   border-width: 1px;
   outline: none;
-  border: 1px solid rgb(168, 215, 247);
+  border: 1px solid var(--color-aqua);
   border-radius: 8px;
-  box-shadow: 0 1px 4px rgb(255, 255, 255);
+  box-shadow: 0 1px 4px var(--color-white);
   background: none;
 
   transition: all 0.3s;
@@ -85,6 +89,36 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    &.minimize:before {
+      content: "";
+      border-color: #ecf0f1;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-bottom: 1.1rem;
+      border-style: solid;
+      border-width: 0rem 0rem 0.4rem 0rem;
+    }
+    &.play:before {
+      content: "";
+      border-color: transparent transparent transparent #ecf0f1;
+      transition: 100ms all ease;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-left: 0.4rem;
+      border-style: solid;
+      border-width: 0.75rem 0 0.75rem 1.5rem;
+    }
+
+    &.pause:before {
+      content: "";
+      border-color: transparent transparent transparent #ecf0f1;
+      transition: 100ms all ease;
+      border-style: double;
+      border-width: 0px 0 0px 1rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-left: 0.5rem;
+    }
   }
 }
 
@@ -149,6 +183,10 @@ button {
 .previewImage {
   border: solid 1px #ecf0f1;
   box-shadow: 0 1px 4px rgb(255, 255, 255);
+  cursor: pointer;
+  &:hover {
+    box-shadow: 4px 4px 8px rgb(255, 255, 255);
+  }
 }
 
 .oakLogo {
@@ -204,12 +242,12 @@ button {
   width: 13px;
   height: 13px;
   border: solid 1px rgb(189, 229, 255);
-  border-radius:  75% 15%;
+  border-radius: 75% 15%;
   position: relative;
   transform: rotate(45deg);
 }
 .eye:before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 5px;
@@ -218,4 +256,42 @@ button {
   border-radius: 50%;
   left: 3px;
   top: 3px;
+}
+
+.modalButton {
+  position: absolute;
+  right: 20px;
+  background-color: rgb(7, 44, 69);
+  &:hover {
+    background-color: rgb(13, 66, 87);
+  }
+}
+
+.ReactModal__Overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 200ms ease-in-out;
+  opacity: 0;
+  background-color: #110d24d3 !important;
+}
+.ReactModal__Content {
+  inset: unset !important;
+  width: fit-content;
+  max-width: 95vw;
+  height: 100%;
+  max-height: 95vh;
+}
+.modalImage {
+  width: 99%;
+  height: 99%;
+  object-fit: contain;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
 }

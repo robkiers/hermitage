@@ -28,7 +28,7 @@ const Player = (props: any) => {
 
   return (
     <div>
-      <button className="circular" onClick={toggle}>{playing ? "||" : "►"}</button>
+      <button className={playing ? "circular pause": "circular play"} onClick={toggle}></button>
     </div>
   );
 };

@@ -7,9 +7,7 @@ const BeautifyUI = (props: any) => {
   return (
     <div className="beautifyUI">
       <div className={showUI ? "flex" : "flex hidden"}>
-        <button className="circular" onClick={() => toggleUI()}>
-          ▬
-        </button>
+        <button className="circular minimize" onClick={() => toggleUI()}></button>
         <Player url={"../assets/nightsong.mp3"}></Player>
       </div>
       <div className={showUI ? "cornerInteraction hidden" : "cornerInteraction"} onClick={() => toggleUI()}>
