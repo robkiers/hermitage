@@ -25,10 +25,7 @@ function App() {
     const sub = fromEvent<MouseEvent>(document, "click")
       .pipe(map((event: MouseEvent) => event))
       .subscribe((event) => {
-        if (
-          zoomLocation.current !== "MAIN" &&
-          (event.target as Element).id === "root"
-        ) {
+        if ((zoomLocation.current !== "MAIN" || page === "OC") && (event.target as Element).id === "root") {
           navigate("NONE");
         }
       });
