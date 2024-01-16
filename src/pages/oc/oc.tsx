@@ -5,7 +5,7 @@ function OC() {
         <h1>Out of character</h1>
         <p>
           The Moonrise Hermitage focuses more on the civilian part of Kaldorei life. But even though we are not
-          military, we cab still stand our ground. We are guided by the Sisterhood, but many are ‘normal’ members of
+          military, we can still stand our ground. We are guided by the Sisterhood, but many are ‘normal’ members of
           Kaldorei society. Many teachers guide the young in the ways of the hunt, nature and Elune. We provide support
           to the Sentinels as they ride to battle, either with additional blades or by providing healing.
         </p>

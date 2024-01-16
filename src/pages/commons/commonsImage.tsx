@@ -34,10 +34,11 @@ function CommonsImage() {
         <button className="modalButton" onClick={closeModal}>
           close
         </button>
-        <img className="modalImage" src={map} alt="modal"/>
+        <img className="modalImage" src={modalIsOpen.img} alt="modal"/>
       </Modal>
     </div>
   );
 }
 
 export default CommonsImage;
+407072
